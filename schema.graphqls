@@ -1,0 +1,6598 @@
+input AcceptPayload {
+  password: String!
+
+  token: String!
+}
+
+enum AnalyzeTaskEvent {
+  manual
+
+  pullRequestMerged
+
+  pullRequestOpened
+
+  push
+}
+
+type AnalyzerPushResult {
+  articles: Int!
+
+  httpOperations: Int!
+
+  httpServices: Int!
+
+  models: Int!
+
+  nodes: Int!
+
+  tableOfContents: Int!
+}
+
+type AnalyzerUploadCounts {
+  articles: Int!
+
+  httpOperations: Int!
+
+  httpServices: Int!
+
+  models: Int!
+
+  nodes: Int!
+
+  tableOfContents: Int!
+}
+
+type AnalyzerUploadResult {
+  counts: AnalyzerUploadCounts!
+}
+
+input ApplyInvitePayload {
+  userId: Int!
+
+  workspaceId: Int!
+}
+
+type AuthResponse {
+  token: String!
+
+  userId: Int
+}
+
+type BillingPlan {
+  currency: String!
+
+  id: String!
+
+  interval: BillingPlanInterval!
+
+  price: Int!
+
+  type: BillingPlanType!
+}
+
+enum BillingPlanInterval {
+  day
+
+  month
+
+  week
+
+  year
+}
+
+enum BillingPlanType {
+  flatFee
+
+  userFee
+}
+
+type BillingProduct {
+  description: String
+
+  id: Int!
+
+  name: String!
+
+  plans: [BillingPlan!]!
+}
+
+type BillingSchedule {
+  atDate: Int!
+
+  fromProduct: Int
+
+  id: String!
+
+  toProduct: Int
+}
+
+type BillingSubscription {
+  currentPeriodEnd: Int
+
+  daysUntilDue: Int
+
+  id: String!
+}
+
+"""
+expression to compare columns of type Boolean. All fields are combined with logical 'AND'.
+"""
+input Boolean_comparison_exp {
+  _eq: Boolean
+
+  _gt: Boolean
+
+  _gte: Boolean
+
+  _in: [Boolean!]
+
+  _is_null: Boolean
+
+  _lt: Boolean
+
+  _lte: Boolean
+
+  _neq: Boolean
+
+  _nin: [Boolean!]
+}
+
+type BranchNodeAuthResponse {
+  token: String!
+}
+
+type BundledBranchNode {
+  branch: String!
+
+  data: String!
+
+  errors: [String!]
+
+  externalOrgSlug: String
+
+  externalSlug: String
+
+  id: Int!
+
+  name: String!
+
+  nodeId: Int!
+
+  summary: String
+
+  type: NodeSnapshotTypeEnum!
+
+  uri: String!
+
+  workspaceIntegrationApiUrl: String
+
+  workspaceIntegrationHostUrl: String
+
+  workspaceIntegrationKind: String
+}
+
+enum CacheControlScope {
+  PRIVATE
+
+  PUBLIC
+}
+
+enum CheckoutMode {
+  setup
+
+  subscription
+}
+
+type CheckoutSession {
+  id: String!
+}
+
+input CiTokenAuthInput {
+  ciToken: String!
+}
+
+type CiTokenAuthResponse {
+  token: String!
+}
+
+type Confirmation {
+  token: String!
+
+  userId: Int!
+}
+
+input CreateAccountPayload {
+  code: String!
+
+  password: String!
+
+  workspaceId: Int!
+}
+
+type CreateVanityEntryResult {
+  output: Boolean!
+}
+
+input CreateWorkspacePayload {
+  code: String!
+
+  workspaceSlug: String!
+}
+
+type DowngradeWorkspaceMemberToGuestOutput {
+  id: Int!
+
+  transferredGroups: Int!
+
+  transferredProjects: Int!
+}
+
+type EmailHasWorkspaceResult {
+  result: Boolean!
+}
+
+type EmailResponse {
+  userId: Int!
+}
+
+type ExternalOrg {
+  description: String
+
+  id: String!
+
+  isPersonal: Boolean!
+
+  name: String!
+
+  slug: String!
+
+  visibility: OrganizationVisibility!
+}
+
+type ExternalRepo {
+  defaultBranch: String
+
+  description: String
+
+  id: String!
+
+  name: String!
+
+  remoteUrlHttp: String!
+
+  remoteUrlSsh: String!
+
+  slug: String!
+
+  starCount: Int
+
+  visibility: RepositoryVisibility!
+}
+
+type ExternalWebhook {
+  events: [String!]
+
+  id: String!
+
+  webhookUrl: String!
+}
+
+"""
+expression to compare columns of type Float. All fields are combined with logical 'AND'.
+"""
+input Float_comparison_exp {
+  _eq: Float
+
+  _gt: Float
+
+  _gte: Float
+
+  _in: [Float!]
+
+  _is_null: Boolean
+
+  _lt: Float
+
+  _lte: Float
+
+  _neq: Float
+
+  _nin: [Float!]
+}
+
+"""
+expression to compare columns of type Int. All fields are combined with logical 'AND'.
+"""
+input Int_comparison_exp {
+  _eq: Int
+
+  _gt: Int
+
+  _gte: Int
+
+  _in: [Int!]
+
+  _is_null: Boolean
+
+  _lt: Int
+
+  _lte: Int
+
+  _neq: Int
+
+  _nin: [Int!]
+}
+
+input IntegrationConfig {
+  apiUrl: String
+
+  bindDN: String
+
+  callbackUrl: String
+
+  cert: String
+
+  clientId: String
+
+  disableRequestedAuthnContext: Boolean
+
+  entryPoint: String
+
+  hostUrl: String
+
+  identifierFormat: String
+
+  issuer: String
+
+  redirectUrl: String
+
+  searchBase: String
+
+  searchFilter: String
+
+  url: String
+}
+
+input IntegrationSecrets {
+  bindCredentials: String
+
+  clientSecret: String
+}
+
+type InviteEmailResult {
+  output: String
+}
+
+type JoinRequest {
+  id: Int!
+
+  isDenied: Boolean!
+
+  userId: Int!
+
+  workspaceId: Int!
+}
+
+type LoginOutput {
+  joinRequestDenied: Boolean
+
+  token: String!
+
+  userId: Int!
+}
+
+input LoginPayload {
+  code: String
+
+  password: String
+
+  usernameOrEmail: String
+
+  workspaceIntegrationId: Int!
+}
+
+type MaskSelection {
+  id: Int!
+
+  mask: sl_masks
+}
+
+input MaskSelectionInput {
+  path: String!
+
+  required: Boolean
+}
+
+type MockUrlData {
+  id: Int!
+
+  operationPath: String
+
+  servicePath: String!
+}
+
+type Mutation {
+  _empty: String
+
+  acceptInvite("" input: AcceptPayload!): AuthResponse!
+
+  analyzerUpload("" analyzerResults: String!, "" branch: String, "" commitHash: String, "" projectId: Int!): AnalyzerUploadResult
+
+  applyInvites("" input: ApplyInvitePayload!): Boolean!
+
+  cancelDowngradeSubscription("" workspaceId: Int!): Boolean!
+
+  connectExternalAccount("" input: LoginPayload!): AuthResponse!
+
+  createCheckoutSession("" billingProductId: Int, "" mode: CheckoutMode!, "" workspaceId: Int!): CheckoutSession!
+
+  createExternalRepository("" isPersonal: Boolean!, "" orgSlug: String!, "" repoName: String!, "" visibility: RepositoryVisibility!, "" workspaceIntegrationId: Int!): ExternalRepo!
+
+  createExternalWebhook("" events: [String!], "" projectId: Int!, "" userId: Int): ExternalWebhook!
+
+  deleteExternalWebhook("" externalOrgSlug: String!, "" externalSlug: String!, "" userId: Int, "" workspaceIntegrationId: Int!): Boolean!
+
+  downgradeSubscription("" billingProductId: Int!, "" workspaceId: Int!): Boolean!
+
+  getNewCiAccessToken("" input: CiTokenAuthInput!): CiTokenAuthResponse!
+
+  loginCapability("" username: String!): Boolean!
+
+  logout: Boolean!
+
+  processCheckoutSession("" sessionId: String!): Boolean!
+
+  redeemCodeCreateAccount("" input: CreateAccountPayload!): SignupResponse!
+
+  redeemCodeCreateWorkspace("" input: CreateWorkspacePayload!): AuthResponse!
+
+  redeemCodeResetPassword("" code: String!, "" password: String!, "" workspaceId: Int!): AuthResponse!
+
+  updatePassword("" currentPassword: String, "" newPassword: String!): Boolean
+
+  upgradeSubscription("" billingProductId: Int!, "" workspaceId: Int!): Boolean!
+}
+
+enum NodeSnapshotTypeEnum {
+  article
+
+  http_operation
+
+  http_server
+
+  http_service
+
+  model
+
+  unknown
+}
+
+enum OrganizationVisibility {
+  internal
+
+  private
+
+  public
+}
+
+type PaymentMethod {
+  card: String
+
+  cardholderName: String
+
+  email: String
+
+  expiry: String
+
+  id: String!
+}
+
+type ProjectSelection {
+  id: Int!
+
+  project: sl_projects
+}
+
+input ProjectSelectionInput {
+  isDesignLibrary: Boolean
+
+  name: String!
+
+  slug: String!
+
+  visibility: String!
+
+  workspaceId: Int!
+}
+
+type Query {
+  getAuthenticationUrl("" scope: String, "" workspaceIntegrationId: Int!): String!
+
+  getBasicAuth("" workspaceIntegrationId: Int!): String!
+
+  getBranchNodeAccessToken("" branchSlug: String, "" nodeUri: String!, "" projectSlug: String!, "" workspaceSlug: String!): BranchNodeAuthResponse!
+
+  getExternalOrgs("" workspaceIntegrationId: Int!): [ExternalOrg!]!
+
+  getExternalRepos("" limit: Int, "" offset: Int, "" orgSlug: String!, "" query: String, "" workspaceIntegrationId: Int!): [ExternalRepo!]!
+
+  getExternalWebhooks("" projectId: Int!): [ExternalWebhook!]!
+
+  getShareSessionAccessToken("" projectSlug: String!, "" shareToken: String!, "" workspaceId: Int!): ShareSessionAuthResponse!
+
+  getWorkspaceBillingInformation("" workspaceId: Int!): WorkspaceBillingInfo!
+
+  health: String
+
+  listBillingProducts: [BillingProduct!]!
+
+  productBoardToken: String!
+
+  testIntegrationConfig("" config: IntegrationConfig!, "" kind: String!, "" secrets: IntegrationSecrets!, "" workspaceIntegrationId: Int): TestedConnection!
+}
+
+type RemoveWorkspaceMemberOutput {
+  id: Int!
+
+  transferredGroups: Int!
+
+  transferredProjects: Int!
+}
+
+enum RepositoryVisibility {
+  internal
+
+  private
+
+  public
+}
+
+type ShareSessionAuthResponse {
+  token: String!
+}
+
+type SignupResponse {
+  auth: AuthResponse!
+
+  joinRequest: JoinRequest
+}
+
+"""
+expression to compare columns of type String. All fields are combined with logical 'AND'.
+"""
+input String_comparison_exp {
+  _eq: String
+
+  _gt: String
+
+  _gte: String
+
+  _ilike: String
+
+  _in: [String!]
+
+  _is_null: Boolean
+
+  _like: String
+
+  _lt: String
+
+  _lte: String
+
+  _neq: String
+
+  _nilike: String
+
+  _nin: [String!]
+
+  _nlike: String
+
+  _nsimilar: String
+
+  _similar: String
+}
+
+type TableOfContents {
+  data: json!
+
+  id: Int!
+}
+
+type TaskOutput {
+  jobId: String!
+}
+
+type TestedConnection {
+  message: String
+
+  success: Boolean!
+}
+
+"""
+The `Upload` scalar type represents a file upload.
+"""
+scalar Upload
+
+type UserToProjectOutput {
+  result: Boolean!
+}
+
+type WorkspaceBillingInfo {
+  id: Int!
+
+  paymentMethod: PaymentMethod
+
+  product: BillingProduct!
+
+  schedule: BillingSchedule
+
+  subscription: BillingSubscription
+}
+
+scalar _text
+
+"""
+expression to compare columns of type _text. All fields are combined with logical 'AND'.
+"""
+input _text_comparison_exp {
+  _eq: _text
+
+  _gt: _text
+
+  _gte: _text
+
+  _in: [_text!]
+
+  _is_null: Boolean
+
+  _lt: _text
+
+  _lte: _text
+
+  _neq: _text
+
+  _nin: [_text!]
+}
+
+scalar bigint
+
+"""
+expression to compare columns of type bigint. All fields are combined with logical 'AND'.
+"""
+input bigint_comparison_exp {
+  _eq: bigint
+
+  _gt: bigint
+
+  _gte: bigint
+
+  _in: [bigint!]
+
+  _is_null: Boolean
+
+  _lt: bigint
+
+  _lte: bigint
+
+  _neq: bigint
+
+  _nin: [bigint!]
+}
+
+scalar bytea
+
+"""
+expression to compare columns of type bytea. All fields are combined with logical 'AND'.
+"""
+input bytea_comparison_exp {
+  _eq: bytea
+
+  _gt: bytea
+
+  _gte: bytea
+
+  _in: [bytea!]
+
+  _is_null: Boolean
+
+  _lt: bytea
+
+  _lte: bytea
+
+  _neq: bytea
+
+  _nin: [bytea!]
+}
+
+scalar citext
+
+"""
+expression to compare columns of type citext. All fields are combined with logical 'AND'.
+"""
+input citext_comparison_exp {
+  _eq: citext
+
+  _gt: citext
+
+  _gte: citext
+
+  _ilike: String
+
+  _in: [citext!]
+
+  _is_null: Boolean
+
+  _like: String
+
+  _lt: citext
+
+  _lte: citext
+
+  _neq: citext
+
+  _nilike: String
+
+  _nin: [citext!]
+
+  _nlike: String
+
+  _nsimilar: String
+
+  _similar: String
+}
+
+scalar json
+
+"""
+expression to compare columns of type json. All fields are combined with logical 'AND'.
+"""
+input json_comparison_exp {
+  _eq: json
+
+  _gt: json
+
+  _gte: json
+
+  _in: [json!]
+
+  _is_null: Boolean
+
+  _lt: json
+
+  _lte: json
+
+  _neq: json
+
+  _nin: [json!]
+}
+
+scalar jsonb
+
+"""
+expression to compare columns of type jsonb. All fields are combined with logical 'AND'.
+"""
+input jsonb_comparison_exp {
+  """
+  is the column contained in the given json value
+  """
+  _contained_in: jsonb
+
+  """
+  does the column contain the given json value at the top level
+  """
+  _contains: jsonb
+
+  _eq: jsonb
+
+  _gt: jsonb
+
+  _gte: jsonb
+
+  """
+  does the string exist as a top-level key in the column
+  """
+  _has_key: String
+
+  """
+  do all of these strings exist as top-level keys in the column
+  """
+  _has_keys_all: [String!]
+
+  """
+  do any of these strings exist as top-level keys in the column
+  """
+  _has_keys_any: [String!]
+
+  _in: [jsonb!]
+
+  _is_null: Boolean
+
+  _lt: jsonb
+
+  _lte: jsonb
+
+  _neq: jsonb
+
+  _nin: [jsonb!]
+}
+
+"""
+mutation root
+"""
+type mutation_root {
+  _empty: String
+
+  acceptInvite("" input: AcceptPayload!): AuthResponse!
+
+  analyzerUpload("" analyzerResults: String!, "" branch: String, "" commitHash: String, "" projectId: Int!): AnalyzerUploadResult
+
+  applyInvites("" input: ApplyInvitePayload!): Boolean!
+
+  cancelDowngradeSubscription("" workspaceId: Int!): Boolean!
+
+  connectExternalAccount("" input: LoginPayload!): AuthResponse!
+
+  createCheckoutSession("" billingProductId: Int, "" mode: CheckoutMode!, "" workspaceId: Int!): CheckoutSession!
+
+  createExternalRepository("" isPersonal: Boolean!, "" orgSlug: String!, "" repoName: String!, "" visibility: RepositoryVisibility!, "" workspaceIntegrationId: Int!): ExternalRepo!
+
+  createExternalWebhook("" events: [String!], "" projectId: Int!, "" userId: Int): ExternalWebhook!
+
+  deleteExternalWebhook("" externalOrgSlug: String!, "" externalSlug: String!, "" userId: Int, "" workspaceIntegrationId: Int!): Boolean!
+
+  downgradeSubscription("" billingProductId: Int!, "" workspaceId: Int!): Boolean!
+
+  getNewCiAccessToken("" input: CiTokenAuthInput!): CiTokenAuthResponse!
+
+  """
+  perform the action: "login"
+  """
+  login(code: String, password: String, usernameOrEmail: String, workspaceIntegrationId: Int!): LoginOutput!
+
+  loginCapability("" username: String!): Boolean!
+
+  logout: Boolean!
+
+  processCheckoutSession("" sessionId: String!): Boolean!
+
+  """
+  perform the action: "queueConfirmationEmail"
+  """
+  queueConfirmationEmail(email: String!): TaskOutput!
+
+  """
+  perform the action: "queueWorkspaceMembershipsEmail"
+  """
+  queueWorkspaceMembershipsEmail(email: String!): TaskOutput!
+
+  redeemCodeCreateAccount("" input: CreateAccountPayload!): SignupResponse!
+
+  """
+  perform the action: "redeemCodeCreateEmail"
+  """
+  redeemCodeCreateEmail(code: String!): EmailResponse!
+
+  redeemCodeCreateWorkspace("" input: CreateWorkspacePayload!): AuthResponse!
+
+  redeemCodeResetPassword("" code: String!, "" password: String!, "" workspaceId: Int!): AuthResponse!
+
+  """
+  perform the action: "sendSignupCode"
+  """
+  sendSignupCode(email: String!): TaskOutput!
+
+  updatePassword("" currentPassword: String, "" newPassword: String!): Boolean
+
+  upgradeSubscription("" billingProductId: Int!, "" workspaceId: Int!): Boolean!
+}
+
+"""
+column ordering options
+"""
+enum order_by {
+  """
+  in the ascending order, nulls last
+  """
+  asc
+
+  """
+  in the ascending order, nulls first
+  """
+  asc_nulls_first
+
+  """
+  in the ascending order, nulls last
+  """
+  asc_nulls_last
+
+  """
+  in the descending order, nulls first
+  """
+  desc
+
+  """
+  in the descending order, nulls first
+  """
+  desc_nulls_first
+
+  """
+  in the descending order, nulls last
+  """
+  desc_nulls_last
+}
+
+"""
+query root
+"""
+type query_root {
+  """
+  fetch data from the table: "sl.billing_accounts" using primary key columns
+  """
+  billingAccount(id: Int!): sl_billing_accounts
+
+  """
+  fetch data from the table: "sl.billing_accounts"
+  """
+  billingAccounts("distinct select on columns" distinct_on: [sl_billing_accounts_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_billing_accounts_order_by!], "filter the rows returned" where: sl_billing_accounts_bool_exp): [sl_billing_accounts!]!
+
+  """
+  fetch data from the table: "sl.billing_products" using primary key columns
+  """
+  billingProduct(id: Int!): sl_billing_products
+
+  """
+  fetch data from the table: "sl.billing_product_features" using primary key columns
+  """
+  billingProductFeature(id: Int!): sl_billing_product_features
+
+  """
+  fetch data from the table: "sl.billing_product_features"
+  """
+  billingProductFeatures("distinct select on columns" distinct_on: [sl_billing_product_features_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_billing_product_features_order_by!], "filter the rows returned" where: sl_billing_product_features_bool_exp): [sl_billing_product_features!]!
+
+  """
+  fetch data from the table: "sl.billing_product_name" using primary key columns
+  """
+  billingProductName(value: String!): sl_billing_product_name
+
+  """
+  fetch data from the table: "sl.billing_product_name"
+  """
+  billingProductNames("distinct select on columns" distinct_on: [sl_billing_product_name_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_billing_product_name_order_by!], "filter the rows returned" where: sl_billing_product_name_bool_exp): [sl_billing_product_name!]!
+
+  """
+  fetch data from the table: "sl.billing_products"
+  """
+  billingProducts("distinct select on columns" distinct_on: [sl_billing_products_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_billing_products_order_by!], "filter the rows returned" where: sl_billing_products_bool_exp): [sl_billing_products!]!
+
+  """
+  fetch data from the table: "sl.billing_status" using primary key columns
+  """
+  billingStatus(value: String!): sl_billing_status
+
+  """
+  fetch data from the table: "sl.billing_status"
+  """
+  billingStatuses("distinct select on columns" distinct_on: [sl_billing_status_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_billing_status_order_by!], "filter the rows returned" where: sl_billing_status_bool_exp): [sl_billing_status!]!
+
+  """
+  fetch data from the table: "sl.branches" using primary key columns
+  """
+  branch(id: Int!): sl_branches
+
+  """
+  fetch data from the table: "sl.branch_nodes" using primary key columns
+  """
+  branchNode(id: Int!): sl_branch_nodes
+
+  """
+  perform the action: "branchNodeMockUrl"
+  """
+  branchNodeMockUrl(branchSlug: String!, projectSlug: String!, uri: String!, version: Int, workspaceSlug: String!): MockUrlData!
+
+  """
+  fetch data from the table: "sl.branch_nodes"
+  """
+  branchNodes("distinct select on columns" distinct_on: [sl_branch_nodes_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_branch_nodes_order_by!], "filter the rows returned" where: sl_branch_nodes_bool_exp): [sl_branch_nodes!]!
+
+  """
+  fetch data from the table: "sl.branches"
+  """
+  branches("distinct select on columns" distinct_on: [sl_branches_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_branches_order_by!], "filter the rows returned" where: sl_branches_bool_exp): [sl_branches!]!
+
+  """
+  perform the action: "bundledBranchNode"
+  """
+  bundledBranchNode(branchSlug: String, projectSlug: String!, uri: String!, workspaceSlug: String!): BundledBranchNode!
+
+  """
+  perform the action: "emailHasWorkspace"
+  """
+  emailHasWorkspace(email: String!): EmailHasWorkspaceResult!
+
+  """
+  fetch data from the table: "sl.features" using primary key columns
+  """
+  feature(id: Int!): sl_features
+
+  """
+  fetch data from the table: "sl.feature_name" using primary key columns
+  """
+  featureName(value: String!): sl_feature_name
+
+  """
+  fetch data from the table: "sl.feature_name"
+  """
+  featureNames("distinct select on columns" distinct_on: [sl_feature_name_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_feature_name_order_by!], "filter the rows returned" where: sl_feature_name_bool_exp): [sl_feature_name!]!
+
+  """
+  fetch data from the table: "sl.feature_type" using primary key columns
+  """
+  featureType(value: String!): sl_feature_type
+
+  """
+  fetch data from the table: "sl.feature_type"
+  """
+  featureTypes("distinct select on columns" distinct_on: [sl_feature_type_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_feature_type_order_by!], "filter the rows returned" where: sl_feature_type_bool_exp): [sl_feature_type!]!
+
+  """
+  fetch data from the table: "sl.features"
+  """
+  features("distinct select on columns" distinct_on: [sl_features_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_features_order_by!], "filter the rows returned" where: sl_features_bool_exp): [sl_features!]!
+
+  getAuthenticationUrl("" scope: String, "" workspaceIntegrationId: Int!): String!
+
+  getBasicAuth("" workspaceIntegrationId: Int!): String!
+
+  getBranchNodeAccessToken("" branchSlug: String, "" nodeUri: String!, "" projectSlug: String!, "" workspaceSlug: String!): BranchNodeAuthResponse!
+
+  getExternalOrgs("" workspaceIntegrationId: Int!): [ExternalOrg!]!
+
+  getExternalRepos("" limit: Int, "" offset: Int, "" orgSlug: String!, "" query: String, "" workspaceIntegrationId: Int!): [ExternalRepo!]!
+
+  getExternalWebhooks("" projectId: Int!): [ExternalWebhook!]!
+
+  getShareSessionAccessToken("" projectSlug: String!, "" shareToken: String!, "" workspaceId: Int!): ShareSessionAuthResponse!
+
+  getWorkspaceBillingInformation("" workspaceId: Int!): WorkspaceBillingInfo!
+
+  """
+  fetch data from the table: "sl.groups" using primary key columns
+  """
+  group(id: String!): sl_groups
+
+  """
+  fetch data from the table: "sl.groups"
+  """
+  groups("distinct select on columns" distinct_on: [sl_groups_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_groups_order_by!], "filter the rows returned" where: sl_groups_bool_exp): [sl_groups!]!
+
+  health: String
+
+  """
+  fetch data from the table: "sl.integrations" using primary key columns
+  """
+  integration(id: Int!): sl_integrations
+
+  """
+  fetch data from the table: "sl.integrations"
+  """
+  integrations("distinct select on columns" distinct_on: [sl_integrations_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_integrations_order_by!], "filter the rows returned" where: sl_integrations_bool_exp): [sl_integrations!]!
+
+  """
+  perform the action: "inviteEmail"
+  """
+  inviteEmail(token: String!): InviteEmailResult
+
+  listBillingProducts: [BillingProduct!]!
+
+  """
+  fetch data from the table: "sl.masks" using primary key columns
+  """
+  mask(id: Int!): sl_masks
+
+  """
+  fetch data from the table: "sl.masks"
+  """
+  masks("distinct select on columns" distinct_on: [sl_masks_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_masks_order_by!], "filter the rows returned" where: sl_masks_bool_exp): [sl_masks!]!
+
+  """
+  fetch data from the table: "sl.nodes" using primary key columns
+  """
+  node(id: Int!): sl_nodes
+
+  """
+  fetch data from the table: "sl.node_changes" using primary key columns
+  """
+  nodeChange(id: Int!): sl_node_changes
+
+  """
+  fetch data from the table: "sl.node_changes"
+  """
+  nodeChanges("distinct select on columns" distinct_on: [sl_node_changes_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_node_changes_order_by!], "filter the rows returned" where: sl_node_changes_bool_exp): [sl_node_changes!]!
+
+  """
+  fetch data from the table: "sl.node_snapshots" using primary key columns
+  """
+  nodeSnapshot(id: Int!): sl_node_snapshots
+
+  """
+  fetch data from the table: "sl.node_snapshot_type" using primary key columns
+  """
+  nodeSnapshotType(value: String!): sl_node_snapshot_type
+
+  """
+  fetch data from the table: "sl.node_snapshot_type"
+  """
+  nodeSnapshotTypes("distinct select on columns" distinct_on: [sl_node_snapshot_type_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_node_snapshot_type_order_by!], "filter the rows returned" where: sl_node_snapshot_type_bool_exp): [sl_node_snapshot_type!]!
+
+  """
+  fetch data from the table: "sl.node_snapshots"
+  """
+  nodeSnapshots("distinct select on columns" distinct_on: [sl_node_snapshots_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_node_snapshots_order_by!], "filter the rows returned" where: sl_node_snapshots_bool_exp): [sl_node_snapshots!]!
+
+  """
+  fetch data from the table: "sl.nodes"
+  """
+  nodes("distinct select on columns" distinct_on: [sl_nodes_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_nodes_order_by!], "filter the rows returned" where: sl_nodes_bool_exp): [sl_nodes!]!
+
+  """
+  fetch data from the table: "sl.permission_name" using primary key columns
+  """
+  permission(value: String!): sl_permission_name
+
+  """
+  fetch data from the table: "sl.permission_name"
+  """
+  permissions("distinct select on columns" distinct_on: [sl_permission_name_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_permission_name_order_by!], "filter the rows returned" where: sl_permission_name_bool_exp): [sl_permission_name!]!
+
+  productBoardToken: String!
+
+  """
+  fetch data from the table: "sl.projects" using primary key columns
+  """
+  project(id: Int!): sl_projects
+
+  """
+  perform the action: "projectTableOfContents"
+  """
+  projectTableOfContents(branchSlug: String, projectSlug: String!, workspaceSlug: String!): TableOfContents!
+
+  """
+  fetch data from the table: "sl.project_user_permissions"
+  """
+  projectUserPermissions("distinct select on columns" distinct_on: [sl_project_user_permissions_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_project_user_permissions_order_by!], "filter the rows returned" where: sl_project_user_permissions_bool_exp): [sl_project_user_permissions!]!
+
+  """
+  fetch data from the table: "sl.projects"
+  """
+  projects("distinct select on columns" distinct_on: [sl_projects_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_projects_order_by!], "filter the rows returned" where: sl_projects_bool_exp): [sl_projects!]!
+
+  """
+  fetch data from the table: "sl.resolved_workspace_integrations"
+  """
+  resolvedWorkspaceIntegrations("distinct select on columns" distinct_on: [sl_resolved_workspace_integrations_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_resolved_workspace_integrations_order_by!], "filter the rows returned" where: sl_resolved_workspace_integrations_bool_exp): [sl_resolved_workspace_integrations!]!
+
+  """
+  fetch data from the table: "sl.role_name" using primary key columns
+  """
+  role(value: String!): sl_role_name
+
+  """
+  fetch data from the table: "sl.role_permissions" using primary key columns
+  """
+  rolePermission(permission: sl_permission_name_enum!, role: sl_role_name_enum!): sl_role_permissions
+
+  """
+  fetch data from the table: "sl.role_permissions"
+  """
+  rolePermissions("distinct select on columns" distinct_on: [sl_role_permissions_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_role_permissions_order_by!], "filter the rows returned" where: sl_role_permissions_bool_exp): [sl_role_permissions!]!
+
+  """
+  fetch data from the table: "sl.role_name"
+  """
+  roles("distinct select on columns" distinct_on: [sl_role_name_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_role_name_order_by!], "filter the rows returned" where: sl_role_name_bool_exp): [sl_role_name!]!
+
+  """
+  fetch data from the table: "sl.role_priority"
+  """
+  sl_role_priority("distinct select on columns" distinct_on: [sl_role_priority_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_role_priority_order_by!], "filter the rows returned" where: sl_role_priority_bool_exp): [sl_role_priority!]!
+
+  """
+  fetch data from the table: "sl.role_priority" using primary key columns
+  """
+  sl_role_priority_by_pk(id: Int!): sl_role_priority
+
+  """
+  fetch data from the table: "sl.setting_name"
+  """
+  sl_setting_name("distinct select on columns" distinct_on: [sl_setting_name_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_setting_name_order_by!], "filter the rows returned" where: sl_setting_name_bool_exp): [sl_setting_name!]!
+
+  """
+  fetch data from the table: "sl.setting_name" using primary key columns
+  """
+  sl_setting_name_by_pk(value: String!): sl_setting_name
+
+  """
+  execute function "sl.sl_search_nodes" which returns "sl.type_search_node_results"
+  """
+  sl_sl_search_nodes("input parameters for function \"sl.sl_search_nodes\"" args: sl_sl_search_nodes_args!, "distinct select on columns" distinct_on: [sl_type_search_node_results_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_type_search_node_results_order_by!], "filter the rows returned" where: sl_type_search_node_results_bool_exp): [sl_type_search_node_results!]!
+
+  """
+  fetch data from the table: "sl.type_search_node_results"
+  """
+  sl_type_search_node_results("distinct select on columns" distinct_on: [sl_type_search_node_results_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_type_search_node_results_order_by!], "filter the rows returned" where: sl_type_search_node_results_bool_exp): [sl_type_search_node_results!]!
+
+  """
+  fetch data from the table: "sl.type_search_node_results" using primary key columns
+  """
+  sl_type_search_node_results_by_pk(id: Int!): sl_type_search_node_results
+
+  """
+  fetch data from the table: "sl.system_status"
+  """
+  systemStatus("distinct select on columns" distinct_on: [sl_system_status_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_system_status_order_by!], "filter the rows returned" where: sl_system_status_bool_exp): [sl_system_status!]!
+
+  testIntegrationConfig("" config: IntegrationConfig!, "" kind: String!, "" secrets: IntegrationSecrets!, "" workspaceIntegrationId: Int): TestedConnection!
+
+  """
+  fetch data from the table: "sl.workspaces" using primary key columns
+  """
+  workspace(id: Int!): sl_workspaces
+
+  """
+  fetch data from the table: "sl.workspace_features" using primary key columns
+  """
+  workspaceFeature(id: Int!): sl_workspace_features
+
+  """
+  fetch data from the table: "sl.workspace_features"
+  """
+  workspaceFeatures("distinct select on columns" distinct_on: [sl_workspace_features_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_features_order_by!], "filter the rows returned" where: sl_workspace_features_bool_exp): [sl_workspace_features!]!
+
+  """
+  fetch data from the table: "sl.workspace_integrations" using primary key columns
+  """
+  workspaceIntegration(id: Int!): sl_workspace_integrations
+
+  """
+  fetch data from the table: "sl.workspace_integrations"
+  """
+  workspaceIntegrations("distinct select on columns" distinct_on: [sl_workspace_integrations_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_integrations_order_by!], "filter the rows returned" where: sl_workspace_integrations_bool_exp): [sl_workspace_integrations!]!
+
+  """
+  fetch data from the table: "sl.workspace_invitations" using primary key columns
+  """
+  workspaceInvitation(id: Int!): sl_workspace_invitations
+
+  """
+  fetch data from the table: "sl.workspace_invitations"
+  """
+  workspaceInvitations("distinct select on columns" distinct_on: [sl_workspace_invitations_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_invitations_order_by!], "filter the rows returned" where: sl_workspace_invitations_bool_exp): [sl_workspace_invitations!]!
+
+  """
+  fetch data from the table: "sl.workspace_usage"
+  """
+  workspaceUsage("distinct select on columns" distinct_on: [sl_workspace_usage_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_usage_order_by!], "filter the rows returned" where: sl_workspace_usage_bool_exp): [sl_workspace_usage!]!
+
+  """
+  fetch data from the table: "sl.workspace_user_permissions"
+  """
+  workspaceUserPermissions("distinct select on columns" distinct_on: [sl_workspace_user_permissions_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_user_permissions_order_by!], "filter the rows returned" where: sl_workspace_user_permissions_bool_exp): [sl_workspace_user_permissions!]!
+
+  """
+  fetch data from the table: "sl.workspaces"
+  """
+  workspaces("distinct select on columns" distinct_on: [sl_workspaces_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspaces_order_by!], "filter the rows returned" where: sl_workspaces_bool_exp): [sl_workspaces!]!
+
+  """
+  fetch data from the table: "sl.yjs_documents" using primary key columns
+  """
+  yjsDocument(id: Int!): sl_yjs_documents
+
+  """
+  fetch data from the table: "sl.yjs_documents"
+  """
+  yjsDocuments("distinct select on columns" distinct_on: [sl_yjs_documents_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_yjs_documents_order_by!], "filter the rows returned" where: sl_yjs_documents_bool_exp): [sl_yjs_documents!]!
+
+  """
+  fetch data from the table: "sl.yjs_snapshots" using primary key columns
+  """
+  yjsSnapshot(id: Int!): sl_yjs_snapshots
+
+  """
+  fetch data from the table: "sl.yjs_snapshots"
+  """
+  yjsSnapshots("distinct select on columns" distinct_on: [sl_yjs_snapshots_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_yjs_snapshots_order_by!], "filter the rows returned" where: sl_yjs_snapshots_bool_exp): [sl_yjs_snapshots!]!
+}
+
+"""
+columns and relationships of "sl.billing_accounts"
+"""
+type sl_billing_accounts {
+  """
+  An object relationship
+  """
+  billingProduct: sl_billing_products!
+
+  billingProductId: Int!
+
+  id: Int!
+
+  includedMembers: Int
+
+  status: sl_billing_status_enum!
+
+  stripeCustomerId: String
+
+  stripePaymentMethodId: String
+
+  stripeSubscriptionId: String
+
+  """
+  An object relationship
+  """
+  workspace: sl_workspaces
+}
+
+"""
+Boolean expression to filter rows from the table "sl.billing_accounts". All fields are combined with a logical 'AND'.
+"""
+input sl_billing_accounts_bool_exp {
+  _and: [sl_billing_accounts_bool_exp]
+
+  _not: sl_billing_accounts_bool_exp
+
+  _or: [sl_billing_accounts_bool_exp]
+
+  billingProduct: sl_billing_products_bool_exp
+
+  billingProductId: Int_comparison_exp
+
+  id: Int_comparison_exp
+
+  includedMembers: Int_comparison_exp
+
+  status: sl_billing_status_enum_comparison_exp
+
+  stripeCustomerId: String_comparison_exp
+
+  stripePaymentMethodId: String_comparison_exp
+
+  stripeSubscriptionId: String_comparison_exp
+
+  workspace: sl_workspaces_bool_exp
+}
+
+"""
+ordering options when selecting data from "sl.billing_accounts"
+"""
+input sl_billing_accounts_order_by {
+  billingProduct: sl_billing_products_order_by
+
+  billingProductId: order_by
+
+  id: order_by
+
+  includedMembers: order_by
+
+  status: order_by
+
+  stripeCustomerId: order_by
+
+  stripePaymentMethodId: order_by
+
+  stripeSubscriptionId: order_by
+
+  workspace: sl_workspaces_order_by
+}
+
+"""
+primary key columns input for table: "sl.billing_accounts"
+"""
+input sl_billing_accounts_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.billing_accounts"
+"""
+enum sl_billing_accounts_select_column {
+  """
+  column name
+  """
+  billingProductId
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  includedMembers
+
+  """
+  column name
+  """
+  status
+
+  """
+  column name
+  """
+  stripeCustomerId
+
+  """
+  column name
+  """
+  stripePaymentMethodId
+
+  """
+  column name
+  """
+  stripeSubscriptionId
+}
+
+"""
+columns and relationships of "sl.billing_product_features"
+"""
+type sl_billing_product_features {
+  billingProductId: Int!
+
+  """
+  An object relationship
+  """
+  feature: sl_features!
+
+  featureId: Int!
+
+  id: Int!
+
+  maxQuantity: Int
+}
+
+"""
+Boolean expression to filter rows from the table "sl.billing_product_features". All fields are combined with a logical 'AND'.
+"""
+input sl_billing_product_features_bool_exp {
+  _and: [sl_billing_product_features_bool_exp]
+
+  _not: sl_billing_product_features_bool_exp
+
+  _or: [sl_billing_product_features_bool_exp]
+
+  billingProductId: Int_comparison_exp
+
+  feature: sl_features_bool_exp
+
+  featureId: Int_comparison_exp
+
+  id: Int_comparison_exp
+
+  maxQuantity: Int_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.billing_product_features"
+"""
+input sl_billing_product_features_order_by {
+  billingProductId: order_by
+
+  feature: sl_features_order_by
+
+  featureId: order_by
+
+  id: order_by
+
+  maxQuantity: order_by
+}
+
+"""
+primary key columns input for table: "sl.billing_product_features"
+"""
+input sl_billing_product_features_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.billing_product_features"
+"""
+enum sl_billing_product_features_select_column {
+  """
+  column name
+  """
+  billingProductId
+
+  """
+  column name
+  """
+  featureId
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  maxQuantity
+}
+
+"""
+columns and relationships of "sl.billing_product_name"
+"""
+type sl_billing_product_name {
+  comment: String
+
+  value: String!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.billing_product_name". All fields are combined with a logical 'AND'.
+"""
+input sl_billing_product_name_bool_exp {
+  _and: [sl_billing_product_name_bool_exp]
+
+  _not: sl_billing_product_name_bool_exp
+
+  _or: [sl_billing_product_name_bool_exp]
+
+  comment: String_comparison_exp
+
+  value: String_comparison_exp
+}
+
+enum sl_billing_product_name_enum {
+  enterprise
+
+  free
+
+  professional
+
+  starter
+}
+
+"""
+expression to compare columns of type sl_billing_product_name_enum. All fields are combined with logical 'AND'.
+"""
+input sl_billing_product_name_enum_comparison_exp {
+  _eq: sl_billing_product_name_enum
+
+  _in: [sl_billing_product_name_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_billing_product_name_enum
+
+  _nin: [sl_billing_product_name_enum!]
+}
+
+"""
+ordering options when selecting data from "sl.billing_product_name"
+"""
+input sl_billing_product_name_order_by {
+  comment: order_by
+
+  value: order_by
+}
+
+"""
+primary key columns input for table: "sl.billing_product_name"
+"""
+input sl_billing_product_name_pk_columns_input {
+  value: String!
+}
+
+"""
+select columns of table "sl.billing_product_name"
+"""
+enum sl_billing_product_name_select_column {
+  """
+  column name
+  """
+  comment
+
+  """
+  column name
+  """
+  value
+}
+
+"""
+columns and relationships of "sl.billing_products"
+"""
+type sl_billing_products {
+  description: String
+
+  """
+  An array relationship
+  """
+  features("distinct select on columns" distinct_on: [sl_billing_product_features_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_billing_product_features_order_by!], "filter the rows returned" where: sl_billing_product_features_bool_exp): [sl_billing_product_features!]!
+
+  flatFeePlanId: String
+
+  id: Int!
+
+  includedMembers: Int
+
+  name: sl_billing_product_name_enum!
+
+  priority: Int!
+
+  userFeePlanId: String
+}
+
+"""
+Boolean expression to filter rows from the table "sl.billing_products". All fields are combined with a logical 'AND'.
+"""
+input sl_billing_products_bool_exp {
+  _and: [sl_billing_products_bool_exp]
+
+  _not: sl_billing_products_bool_exp
+
+  _or: [sl_billing_products_bool_exp]
+
+  description: String_comparison_exp
+
+  features: sl_billing_product_features_bool_exp
+
+  flatFeePlanId: String_comparison_exp
+
+  id: Int_comparison_exp
+
+  includedMembers: Int_comparison_exp
+
+  name: sl_billing_product_name_enum_comparison_exp
+
+  priority: Int_comparison_exp
+
+  userFeePlanId: String_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.billing_products"
+"""
+input sl_billing_products_order_by {
+  description: order_by
+
+  flatFeePlanId: order_by
+
+  id: order_by
+
+  includedMembers: order_by
+
+  name: order_by
+
+  priority: order_by
+
+  userFeePlanId: order_by
+}
+
+"""
+primary key columns input for table: "sl.billing_products"
+"""
+input sl_billing_products_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.billing_products"
+"""
+enum sl_billing_products_select_column {
+  """
+  column name
+  """
+  description
+
+  """
+  column name
+  """
+  flatFeePlanId
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  includedMembers
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  priority
+
+  """
+  column name
+  """
+  userFeePlanId
+}
+
+"""
+columns and relationships of "sl.billing_status"
+"""
+type sl_billing_status {
+  comment: String
+
+  value: String!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.billing_status". All fields are combined with a logical 'AND'.
+"""
+input sl_billing_status_bool_exp {
+  _and: [sl_billing_status_bool_exp]
+
+  _not: sl_billing_status_bool_exp
+
+  _or: [sl_billing_status_bool_exp]
+
+  comment: String_comparison_exp
+
+  value: String_comparison_exp
+}
+
+enum sl_billing_status_enum {
+  active
+
+  inactive
+
+  payment_failed
+
+  payment_requires_action
+}
+
+"""
+expression to compare columns of type sl_billing_status_enum. All fields are combined with logical 'AND'.
+"""
+input sl_billing_status_enum_comparison_exp {
+  _eq: sl_billing_status_enum
+
+  _in: [sl_billing_status_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_billing_status_enum
+
+  _nin: [sl_billing_status_enum!]
+}
+
+"""
+ordering options when selecting data from "sl.billing_status"
+"""
+input sl_billing_status_order_by {
+  comment: order_by
+
+  value: order_by
+}
+
+"""
+primary key columns input for table: "sl.billing_status"
+"""
+input sl_billing_status_pk_columns_input {
+  value: String!
+}
+
+"""
+select columns of table "sl.billing_status"
+"""
+enum sl_billing_status_select_column {
+  """
+  column name
+  """
+  comment
+
+  """
+  column name
+  """
+  value
+}
+
+"""
+columns and relationships of "sl.branch_nodes"
+"""
+type sl_branch_nodes {
+  baseUri: String!
+
+  """
+  An object relationship
+  """
+  branch: sl_branches!
+
+  branchId: Int!
+
+  """
+  An array relationship
+  """
+  changes("distinct select on columns" distinct_on: [sl_node_changes_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_node_changes_order_by!], "filter the rows returned" where: sl_node_changes_bool_exp): [sl_node_changes!]!
+
+  createdAt: timestamptz!
+
+  id: Int!
+
+  internal: Boolean!
+
+  isFile: Boolean!
+
+  isLatestVersion: Boolean!
+
+  name: String!
+
+  """
+  An object relationship
+  """
+  node: sl_nodes!
+
+  nodeId: Int!
+
+  """
+  An object relationship
+  """
+  snapshot: sl_node_snapshots!
+
+  snapshotId: Int!
+
+  tsv: tsvector!
+
+  updatedAt: timestamptz!
+
+  version: String!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.branch_nodes". All fields are combined with a logical 'AND'.
+"""
+input sl_branch_nodes_bool_exp {
+  _and: [sl_branch_nodes_bool_exp]
+
+  _not: sl_branch_nodes_bool_exp
+
+  _or: [sl_branch_nodes_bool_exp]
+
+  baseUri: String_comparison_exp
+
+  branch: sl_branches_bool_exp
+
+  branchId: Int_comparison_exp
+
+  changes: sl_node_changes_bool_exp
+
+  createdAt: timestamptz_comparison_exp
+
+  id: Int_comparison_exp
+
+  internal: Boolean_comparison_exp
+
+  isFile: Boolean_comparison_exp
+
+  isLatestVersion: Boolean_comparison_exp
+
+  name: String_comparison_exp
+
+  node: sl_nodes_bool_exp
+
+  nodeId: Int_comparison_exp
+
+  snapshot: sl_node_snapshots_bool_exp
+
+  snapshotId: Int_comparison_exp
+
+  tsv: tsvector_comparison_exp
+
+  updatedAt: timestamptz_comparison_exp
+
+  version: String_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.branch_nodes"
+"""
+input sl_branch_nodes_order_by {
+  baseUri: order_by
+
+  branch: sl_branches_order_by
+
+  branchId: order_by
+
+  createdAt: order_by
+
+  id: order_by
+
+  internal: order_by
+
+  isFile: order_by
+
+  isLatestVersion: order_by
+
+  name: order_by
+
+  node: sl_nodes_order_by
+
+  nodeId: order_by
+
+  snapshot: sl_node_snapshots_order_by
+
+  snapshotId: order_by
+
+  tsv: order_by
+
+  updatedAt: order_by
+
+  version: order_by
+}
+
+"""
+primary key columns input for table: "sl.branch_nodes"
+"""
+input sl_branch_nodes_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.branch_nodes"
+"""
+enum sl_branch_nodes_select_column {
+  """
+  column name
+  """
+  baseUri
+
+  """
+  column name
+  """
+  branchId
+
+  """
+  column name
+  """
+  createdAt
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  internal
+
+  """
+  column name
+  """
+  isFile
+
+  """
+  column name
+  """
+  isLatestVersion
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  nodeId
+
+  """
+  column name
+  """
+  snapshotId
+
+  """
+  column name
+  """
+  tsv
+
+  """
+  column name
+  """
+  updatedAt
+
+  """
+  column name
+  """
+  version
+}
+
+"""
+columns and relationships of "sl.branches"
+"""
+type sl_branches {
+  articleCount: Int!
+
+  """
+  An object relationship
+  """
+  baselineBranch: sl_branches
+
+  baselineBranchId: Int
+
+  """
+  An array relationship
+  """
+  branchNodes("distinct select on columns" distinct_on: [sl_branch_nodes_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_branch_nodes_order_by!], "filter the rows returned" where: sl_branch_nodes_bool_exp): [sl_branch_nodes!]!
+
+  """
+  An array relationship
+  """
+  childBranches("distinct select on columns" distinct_on: [sl_branches_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_branches_order_by!], "filter the rows returned" where: sl_branches_bool_exp): [sl_branches!]!
+
+  """
+  last analyzed commit hash
+  """
+  commitHash: String
+
+  createdAt: timestamptz!
+
+  httpOperationCount: Int!
+
+  httpServiceCount: Int!
+
+  id: Int!
+
+  isDefault: Boolean!
+
+  isPublished: Boolean!
+
+  lastAnalyzedAt: timestamptz!
+
+  modelCount: Int!
+
+  """
+  Optional display name to use in UI instead of slug.
+  """
+  name: String
+
+  """
+  An array relationship
+  """
+  nodeChanges("distinct select on columns" distinct_on: [sl_node_changes_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_node_changes_order_by!], "filter the rows returned" where: sl_node_changes_bool_exp): [sl_node_changes!]!
+
+  nodeCount: Int!
+
+  """
+  An object relationship
+  """
+  project: sl_projects!
+
+  projectId: Int!
+
+  """
+  An object relationship
+  """
+  projectUserPermissions: sl_project_user_permissions
+
+  slug: String!
+
+  tableOfContentsCount: Int!
+
+  updatedAt: timestamptz!
+
+  """
+  An object relationship
+  """
+  yjsDocument: sl_yjs_documents
+}
+
+"""
+Boolean expression to filter rows from the table "sl.branches". All fields are combined with a logical 'AND'.
+"""
+input sl_branches_bool_exp {
+  _and: [sl_branches_bool_exp]
+
+  _not: sl_branches_bool_exp
+
+  _or: [sl_branches_bool_exp]
+
+  articleCount: Int_comparison_exp
+
+  baselineBranch: sl_branches_bool_exp
+
+  baselineBranchId: Int_comparison_exp
+
+  branchNodes: sl_branch_nodes_bool_exp
+
+  childBranches: sl_branches_bool_exp
+
+  commitHash: String_comparison_exp
+
+  createdAt: timestamptz_comparison_exp
+
+  httpOperationCount: Int_comparison_exp
+
+  httpServiceCount: Int_comparison_exp
+
+  id: Int_comparison_exp
+
+  isDefault: Boolean_comparison_exp
+
+  isPublished: Boolean_comparison_exp
+
+  lastAnalyzedAt: timestamptz_comparison_exp
+
+  modelCount: Int_comparison_exp
+
+  name: String_comparison_exp
+
+  nodeChanges: sl_node_changes_bool_exp
+
+  nodeCount: Int_comparison_exp
+
+  project: sl_projects_bool_exp
+
+  projectId: Int_comparison_exp
+
+  projectUserPermissions: sl_project_user_permissions_bool_exp
+
+  slug: String_comparison_exp
+
+  tableOfContentsCount: Int_comparison_exp
+
+  updatedAt: timestamptz_comparison_exp
+
+  yjsDocument: sl_yjs_documents_bool_exp
+}
+
+"""
+ordering options when selecting data from "sl.branches"
+"""
+input sl_branches_order_by {
+  articleCount: order_by
+
+  baselineBranch: sl_branches_order_by
+
+  baselineBranchId: order_by
+
+  commitHash: order_by
+
+  createdAt: order_by
+
+  httpOperationCount: order_by
+
+  httpServiceCount: order_by
+
+  id: order_by
+
+  isDefault: order_by
+
+  isPublished: order_by
+
+  lastAnalyzedAt: order_by
+
+  modelCount: order_by
+
+  name: order_by
+
+  nodeCount: order_by
+
+  project: sl_projects_order_by
+
+  projectId: order_by
+
+  projectUserPermissions: sl_project_user_permissions_order_by
+
+  slug: order_by
+
+  tableOfContentsCount: order_by
+
+  updatedAt: order_by
+
+  yjsDocument: sl_yjs_documents_order_by
+}
+
+"""
+primary key columns input for table: "sl.branches"
+"""
+input sl_branches_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.branches"
+"""
+enum sl_branches_select_column {
+  """
+  column name
+  """
+  articleCount
+
+  """
+  column name
+  """
+  baselineBranchId
+
+  """
+  column name
+  """
+  commitHash
+
+  """
+  column name
+  """
+  createdAt
+
+  """
+  column name
+  """
+  httpOperationCount
+
+  """
+  column name
+  """
+  httpServiceCount
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  isDefault
+
+  """
+  column name
+  """
+  isPublished
+
+  """
+  column name
+  """
+  lastAnalyzedAt
+
+  """
+  column name
+  """
+  modelCount
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  nodeCount
+
+  """
+  column name
+  """
+  projectId
+
+  """
+  column name
+  """
+  slug
+
+  """
+  column name
+  """
+  tableOfContentsCount
+
+  """
+  column name
+  """
+  updatedAt
+}
+
+"""
+columns and relationships of "sl.feature_name"
+"""
+type sl_feature_name {
+  comment: String
+
+  value: String!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.feature_name". All fields are combined with a logical 'AND'.
+"""
+input sl_feature_name_bool_exp {
+  _and: [sl_feature_name_bool_exp]
+
+  _not: sl_feature_name_bool_exp
+
+  _or: [sl_feature_name_bool_exp]
+
+  comment: String_comparison_exp
+
+  value: String_comparison_exp
+}
+
+enum sl_feature_name_enum {
+  activity_logs
+
+  changelogs
+
+  custom_domain
+
+  custom_git_integration
+
+  custom_theme
+
+  dependency_graph
+
+  design_library
+
+  design_library_masking
+
+  google_tag_manager
+
+  groups
+
+  guests
+
+  hosted_mocking
+
+  localizejs
+
+  members
+
+  multi_branch
+
+  projects
+
+  redirects
+
+  saml_ldap_integration
+
+  whitelabel
+
+  whitelisted_domains
+}
+
+"""
+expression to compare columns of type sl_feature_name_enum. All fields are combined with logical 'AND'.
+"""
+input sl_feature_name_enum_comparison_exp {
+  _eq: sl_feature_name_enum
+
+  _in: [sl_feature_name_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_feature_name_enum
+
+  _nin: [sl_feature_name_enum!]
+}
+
+"""
+ordering options when selecting data from "sl.feature_name"
+"""
+input sl_feature_name_order_by {
+  comment: order_by
+
+  value: order_by
+}
+
+"""
+primary key columns input for table: "sl.feature_name"
+"""
+input sl_feature_name_pk_columns_input {
+  value: String!
+}
+
+"""
+select columns of table "sl.feature_name"
+"""
+enum sl_feature_name_select_column {
+  """
+  column name
+  """
+  comment
+
+  """
+  column name
+  """
+  value
+}
+
+"""
+columns and relationships of "sl.feature_type"
+"""
+type sl_feature_type {
+  comment: String
+
+  value: String!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.feature_type". All fields are combined with a logical 'AND'.
+"""
+input sl_feature_type_bool_exp {
+  _and: [sl_feature_type_bool_exp]
+
+  _not: sl_feature_type_bool_exp
+
+  _or: [sl_feature_type_bool_exp]
+
+  comment: String_comparison_exp
+
+  value: String_comparison_exp
+}
+
+enum sl_feature_type_enum {
+  limit
+
+  toggle
+}
+
+"""
+expression to compare columns of type sl_feature_type_enum. All fields are combined with logical 'AND'.
+"""
+input sl_feature_type_enum_comparison_exp {
+  _eq: sl_feature_type_enum
+
+  _in: [sl_feature_type_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_feature_type_enum
+
+  _nin: [sl_feature_type_enum!]
+}
+
+"""
+ordering options when selecting data from "sl.feature_type"
+"""
+input sl_feature_type_order_by {
+  comment: order_by
+
+  value: order_by
+}
+
+"""
+primary key columns input for table: "sl.feature_type"
+"""
+input sl_feature_type_pk_columns_input {
+  value: String!
+}
+
+"""
+select columns of table "sl.feature_type"
+"""
+enum sl_feature_type_select_column {
+  """
+  column name
+  """
+  comment
+
+  """
+  column name
+  """
+  value
+}
+
+"""
+columns and relationships of "sl.features"
+"""
+type sl_features {
+  id: Int!
+
+  name: sl_feature_name_enum!
+
+  type: sl_feature_type_enum!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.features". All fields are combined with a logical 'AND'.
+"""
+input sl_features_bool_exp {
+  _and: [sl_features_bool_exp]
+
+  _not: sl_features_bool_exp
+
+  _or: [sl_features_bool_exp]
+
+  id: Int_comparison_exp
+
+  name: sl_feature_name_enum_comparison_exp
+
+  type: sl_feature_type_enum_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.features"
+"""
+input sl_features_order_by {
+  id: order_by
+
+  name: order_by
+
+  type: order_by
+}
+
+"""
+primary key columns input for table: "sl.features"
+"""
+input sl_features_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.features"
+"""
+enum sl_features_select_column {
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  type
+}
+
+enum sl_group_visibility_enum {
+  internal
+
+  public
+}
+
+"""
+expression to compare columns of type sl_group_visibility_enum. All fields are combined with logical 'AND'.
+"""
+input sl_group_visibility_enum_comparison_exp {
+  _eq: sl_group_visibility_enum
+
+  _in: [sl_group_visibility_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_group_visibility_enum
+
+  _nin: [sl_group_visibility_enum!]
+}
+
+"""
+columns and relationships of "sl.groups"
+"""
+type sl_groups {
+  createdAt: timestamptz!
+
+  creatorId: Int
+
+  description: String
+
+  iconColor: String
+
+  iconName: String
+
+  id: String!
+
+  name: String!
+
+  """
+  An array relationship
+  """
+  projects("distinct select on columns" distinct_on: [sl_projects_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_projects_order_by!], "filter the rows returned" where: sl_projects_bool_exp): [sl_projects!]!
+
+  slug: String!
+
+  updatedAt: timestamptz!
+
+  visibility: sl_group_visibility_enum!
+
+  """
+  An object relationship
+  """
+  workspace: sl_workspaces!
+
+  workspaceId: Int!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.groups". All fields are combined with a logical 'AND'.
+"""
+input sl_groups_bool_exp {
+  _and: [sl_groups_bool_exp]
+
+  _not: sl_groups_bool_exp
+
+  _or: [sl_groups_bool_exp]
+
+  createdAt: timestamptz_comparison_exp
+
+  creatorId: Int_comparison_exp
+
+  description: String_comparison_exp
+
+  iconColor: String_comparison_exp
+
+  iconName: String_comparison_exp
+
+  id: String_comparison_exp
+
+  name: String_comparison_exp
+
+  projects: sl_projects_bool_exp
+
+  slug: String_comparison_exp
+
+  updatedAt: timestamptz_comparison_exp
+
+  visibility: sl_group_visibility_enum_comparison_exp
+
+  workspace: sl_workspaces_bool_exp
+
+  workspaceId: Int_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.groups"
+"""
+input sl_groups_order_by {
+  createdAt: order_by
+
+  creatorId: order_by
+
+  description: order_by
+
+  iconColor: order_by
+
+  iconName: order_by
+
+  id: order_by
+
+  name: order_by
+
+  slug: order_by
+
+  updatedAt: order_by
+
+  visibility: order_by
+
+  workspace: sl_workspaces_order_by
+
+  workspaceId: order_by
+}
+
+"""
+primary key columns input for table: "sl.groups"
+"""
+input sl_groups_pk_columns_input {
+  id: String!
+}
+
+"""
+select columns of table "sl.groups"
+"""
+enum sl_groups_select_column {
+  """
+  column name
+  """
+  createdAt
+
+  """
+  column name
+  """
+  creatorId
+
+  """
+  column name
+  """
+  description
+
+  """
+  column name
+  """
+  iconColor
+
+  """
+  column name
+  """
+  iconName
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  slug
+
+  """
+  column name
+  """
+  updatedAt
+
+  """
+  column name
+  """
+  visibility
+
+  """
+  column name
+  """
+  workspaceId
+}
+
+enum sl_integration_kind_enum {
+  azure_devops_server
+
+  bitbucket_cloud
+
+  bitbucket_server
+
+  builtin
+
+  gitea
+
+  github
+
+  gitlab
+
+  ldap
+
+  saml
+}
+
+"""
+expression to compare columns of type sl_integration_kind_enum. All fields are combined with logical 'AND'.
+"""
+input sl_integration_kind_enum_comparison_exp {
+  _eq: sl_integration_kind_enum
+
+  _in: [sl_integration_kind_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_integration_kind_enum
+
+  _nin: [sl_integration_kind_enum!]
+}
+
+"""
+columns and relationships of "sl.integrations"
+"""
+type sl_integrations {
+  config("JSON select path" path: String): jsonb!
+
+  createdAt: timestamptz!
+
+  """
+  A computed field, executes function "sl.sl_integration_has_secrets"
+  """
+  has_secrets("JSON select path" path: String): jsonb
+
+  id: Int!
+
+  kind: sl_integration_kind_enum!
+
+  name: String!
+
+  shortcode: String!
+
+  updatedAt: timestamptz!
+
+  """
+  An array relationship
+  """
+  workspaceIntegrations("distinct select on columns" distinct_on: [sl_workspace_integrations_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_integrations_order_by!], "filter the rows returned" where: sl_workspace_integrations_bool_exp): [sl_workspace_integrations!]!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.integrations". All fields are combined with a logical 'AND'.
+"""
+input sl_integrations_bool_exp {
+  _and: [sl_integrations_bool_exp]
+
+  _not: sl_integrations_bool_exp
+
+  _or: [sl_integrations_bool_exp]
+
+  config: jsonb_comparison_exp
+
+  createdAt: timestamptz_comparison_exp
+
+  id: Int_comparison_exp
+
+  kind: sl_integration_kind_enum_comparison_exp
+
+  name: String_comparison_exp
+
+  shortcode: String_comparison_exp
+
+  updatedAt: timestamptz_comparison_exp
+
+  workspaceIntegrations: sl_workspace_integrations_bool_exp
+}
+
+"""
+ordering options when selecting data from "sl.integrations"
+"""
+input sl_integrations_order_by {
+  config: order_by
+
+  createdAt: order_by
+
+  id: order_by
+
+  kind: order_by
+
+  name: order_by
+
+  shortcode: order_by
+
+  updatedAt: order_by
+}
+
+"""
+primary key columns input for table: "sl.integrations"
+"""
+input sl_integrations_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.integrations"
+"""
+enum sl_integrations_select_column {
+  """
+  column name
+  """
+  config
+
+  """
+  column name
+  """
+  createdAt
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  kind
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  shortcode
+
+  """
+  column name
+  """
+  updatedAt
+}
+
+"""
+columns and relationships of "sl.masks"
+"""
+type sl_masks {
+  data("JSON select path" path: String): jsonb!
+
+  dataHash: String!
+
+  id: Int!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.masks". All fields are combined with a logical 'AND'.
+"""
+input sl_masks_bool_exp {
+  _and: [sl_masks_bool_exp]
+
+  _not: sl_masks_bool_exp
+
+  _or: [sl_masks_bool_exp]
+
+  data: jsonb_comparison_exp
+
+  dataHash: String_comparison_exp
+
+  id: Int_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.masks"
+"""
+input sl_masks_order_by {
+  data: order_by
+
+  dataHash: order_by
+
+  id: order_by
+}
+
+"""
+primary key columns input for table: "sl.masks"
+"""
+input sl_masks_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.masks"
+"""
+enum sl_masks_select_column {
+  """
+  column name
+  """
+  data
+
+  """
+  column name
+  """
+  dataHash
+
+  """
+  column name
+  """
+  id
+}
+
+enum sl_node_change_code_enum {
+  additional
+
+  content
+
+  name
+
+  node
+
+  operation
+
+  optional
+
+  parameter
+
+  required
+
+  response
+
+  server
+
+  spec
+
+  text
+
+  type
+
+  unknown
+}
+
+"""
+expression to compare columns of type sl_node_change_code_enum. All fields are combined with logical 'AND'.
+"""
+input sl_node_change_code_enum_comparison_exp {
+  _eq: sl_node_change_code_enum
+
+  _in: [sl_node_change_code_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_node_change_code_enum
+
+  _nin: [sl_node_change_code_enum!]
+}
+
+enum sl_node_change_context_enum {
+  added
+
+  code
+
+  cookie
+
+  deprecated
+
+  description
+
+  first
+
+  header
+
+  json_schema
+
+  last
+
+  media_type
+
+  name
+
+  path
+
+  property
+
+  query
+
+  request_body
+
+  security
+
+  success
+
+  two_xx
+
+  unknown
+}
+
+"""
+expression to compare columns of type sl_node_change_context_enum. All fields are combined with logical 'AND'.
+"""
+input sl_node_change_context_enum_comparison_exp {
+  _eq: sl_node_change_context_enum
+
+  _in: [sl_node_change_context_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_node_change_context_enum
+
+  _nin: [sl_node_change_context_enum!]
+}
+
+enum sl_node_change_operation_enum {
+  add
+
+  copy
+
+  move
+
+  remove
+
+  replace
+
+  test
+
+  text
+
+  unknown
+}
+
+"""
+expression to compare columns of type sl_node_change_operation_enum. All fields are combined with logical 'AND'.
+"""
+input sl_node_change_operation_enum_comparison_exp {
+  _eq: sl_node_change_operation_enum
+
+  _in: [sl_node_change_operation_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_node_change_operation_enum
+
+  _nin: [sl_node_change_operation_enum!]
+}
+
+enum sl_node_change_semver_enum {
+  major
+
+  minor
+
+  patch
+
+  unknown
+}
+
+"""
+expression to compare columns of type sl_node_change_semver_enum. All fields are combined with logical 'AND'.
+"""
+input sl_node_change_semver_enum_comparison_exp {
+  _eq: sl_node_change_semver_enum
+
+  _in: [sl_node_change_semver_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_node_change_semver_enum
+
+  _nin: [sl_node_change_semver_enum!]
+}
+
+"""
+columns and relationships of "sl.node_changes"
+"""
+type sl_node_changes {
+  """
+  An object relationship
+  """
+  branch: sl_branches!
+
+  branchId: Int!
+
+  code: sl_node_change_code_enum!
+
+  context: sl_node_change_context_enum
+
+  createdAt: timestamptz!
+
+  data("JSON select path" path: String): jsonb
+
+  id: Int!
+
+  level: Int!
+
+  message: String!
+
+  """
+  An object relationship
+  """
+  node: sl_nodes!
+
+  nodeId: Int!
+
+  operation: sl_node_change_operation_enum!
+
+  path: String!
+
+  semver: sl_node_change_semver_enum!
+
+  updatedAt: timestamptz!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.node_changes". All fields are combined with a logical 'AND'.
+"""
+input sl_node_changes_bool_exp {
+  _and: [sl_node_changes_bool_exp]
+
+  _not: sl_node_changes_bool_exp
+
+  _or: [sl_node_changes_bool_exp]
+
+  branch: sl_branches_bool_exp
+
+  branchId: Int_comparison_exp
+
+  code: sl_node_change_code_enum_comparison_exp
+
+  context: sl_node_change_context_enum_comparison_exp
+
+  createdAt: timestamptz_comparison_exp
+
+  data: jsonb_comparison_exp
+
+  id: Int_comparison_exp
+
+  level: Int_comparison_exp
+
+  message: String_comparison_exp
+
+  node: sl_nodes_bool_exp
+
+  nodeId: Int_comparison_exp
+
+  operation: sl_node_change_operation_enum_comparison_exp
+
+  path: String_comparison_exp
+
+  semver: sl_node_change_semver_enum_comparison_exp
+
+  updatedAt: timestamptz_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.node_changes"
+"""
+input sl_node_changes_order_by {
+  branch: sl_branches_order_by
+
+  branchId: order_by
+
+  code: order_by
+
+  context: order_by
+
+  createdAt: order_by
+
+  data: order_by
+
+  id: order_by
+
+  level: order_by
+
+  message: order_by
+
+  node: sl_nodes_order_by
+
+  nodeId: order_by
+
+  operation: order_by
+
+  path: order_by
+
+  semver: order_by
+
+  updatedAt: order_by
+}
+
+"""
+primary key columns input for table: "sl.node_changes"
+"""
+input sl_node_changes_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.node_changes"
+"""
+enum sl_node_changes_select_column {
+  """
+  column name
+  """
+  branchId
+
+  """
+  column name
+  """
+  code
+
+  """
+  column name
+  """
+  context
+
+  """
+  column name
+  """
+  createdAt
+
+  """
+  column name
+  """
+  data
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  level
+
+  """
+  column name
+  """
+  message
+
+  """
+  column name
+  """
+  nodeId
+
+  """
+  column name
+  """
+  operation
+
+  """
+  column name
+  """
+  path
+
+  """
+  column name
+  """
+  semver
+
+  """
+  column name
+  """
+  updatedAt
+}
+
+enum sl_node_format_enum {
+  json
+
+  markdown
+
+  yaml
+}
+
+"""
+expression to compare columns of type sl_node_format_enum. All fields are combined with logical 'AND'.
+"""
+input sl_node_format_enum_comparison_exp {
+  _eq: sl_node_format_enum
+
+  _in: [sl_node_format_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_node_format_enum
+
+  _nin: [sl_node_format_enum!]
+}
+
+enum sl_node_snapshot_spec_enum {
+  generic
+
+  json_schema
+
+  markdown
+
+  md
+
+  oas2
+
+  oas3
+
+  spectral_ruleset
+
+  table_of_contents
+}
+
+"""
+expression to compare columns of type sl_node_snapshot_spec_enum. All fields are combined with logical 'AND'.
+"""
+input sl_node_snapshot_spec_enum_comparison_exp {
+  _eq: sl_node_snapshot_spec_enum
+
+  _in: [sl_node_snapshot_spec_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_node_snapshot_spec_enum
+
+  _nin: [sl_node_snapshot_spec_enum!]
+}
+
+"""
+columns and relationships of "sl.node_snapshot_type"
+"""
+type sl_node_snapshot_type {
+  comment: String
+
+  value: String!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.node_snapshot_type". All fields are combined with a logical 'AND'.
+"""
+input sl_node_snapshot_type_bool_exp {
+  _and: [sl_node_snapshot_type_bool_exp]
+
+  _not: sl_node_snapshot_type_bool_exp
+
+  _or: [sl_node_snapshot_type_bool_exp]
+
+  comment: String_comparison_exp
+
+  value: String_comparison_exp
+}
+
+enum sl_node_snapshot_type_enum {
+  article
+
+  generic
+
+  http_operation
+
+  http_server
+
+  http_service
+
+  model
+
+  spectral_ruleset
+
+  table_of_contents
+
+  unknown
+}
+
+"""
+expression to compare columns of type sl_node_snapshot_type_enum. All fields are combined with logical 'AND'.
+"""
+input sl_node_snapshot_type_enum_comparison_exp {
+  _eq: sl_node_snapshot_type_enum
+
+  _in: [sl_node_snapshot_type_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_node_snapshot_type_enum
+
+  _nin: [sl_node_snapshot_type_enum!]
+}
+
+"""
+ordering options when selecting data from "sl.node_snapshot_type"
+"""
+input sl_node_snapshot_type_order_by {
+  comment: order_by
+
+  value: order_by
+}
+
+"""
+primary key columns input for table: "sl.node_snapshot_type"
+"""
+input sl_node_snapshot_type_pk_columns_input {
+  value: String!
+}
+
+"""
+select columns of table "sl.node_snapshot_type"
+"""
+enum sl_node_snapshot_type_select_column {
+  """
+  column name
+  """
+  comment
+
+  """
+  column name
+  """
+  value
+}
+
+"""
+columns and relationships of "sl.node_snapshots"
+"""
+type sl_node_snapshots {
+  """
+  An array relationship
+  """
+  branchNodes("distinct select on columns" distinct_on: [sl_branch_nodes_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_branch_nodes_order_by!], "filter the rows returned" where: sl_branch_nodes_bool_exp): [sl_branch_nodes!]!
+
+  createdAt: timestamptz!
+
+  data: String!
+
+  dataHash: String!
+
+  dataSize: bigint!
+
+  id: Int!
+
+  spec: sl_node_snapshot_spec_enum
+
+  summary: String
+
+  tagNames: _text
+
+  type: sl_node_snapshot_type_enum!
+
+  updatedAt: timestamptz!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.node_snapshots". All fields are combined with a logical 'AND'.
+"""
+input sl_node_snapshots_bool_exp {
+  _and: [sl_node_snapshots_bool_exp]
+
+  _not: sl_node_snapshots_bool_exp
+
+  _or: [sl_node_snapshots_bool_exp]
+
+  branchNodes: sl_branch_nodes_bool_exp
+
+  createdAt: timestamptz_comparison_exp
+
+  data: String_comparison_exp
+
+  dataHash: String_comparison_exp
+
+  dataSize: bigint_comparison_exp
+
+  id: Int_comparison_exp
+
+  spec: sl_node_snapshot_spec_enum_comparison_exp
+
+  summary: String_comparison_exp
+
+  tagNames: _text_comparison_exp
+
+  type: sl_node_snapshot_type_enum_comparison_exp
+
+  updatedAt: timestamptz_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.node_snapshots"
+"""
+input sl_node_snapshots_order_by {
+  createdAt: order_by
+
+  data: order_by
+
+  dataHash: order_by
+
+  dataSize: order_by
+
+  id: order_by
+
+  spec: order_by
+
+  summary: order_by
+
+  tagNames: order_by
+
+  type: order_by
+
+  updatedAt: order_by
+}
+
+"""
+primary key columns input for table: "sl.node_snapshots"
+"""
+input sl_node_snapshots_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.node_snapshots"
+"""
+enum sl_node_snapshots_select_column {
+  """
+  column name
+  """
+  createdAt
+
+  """
+  column name
+  """
+  data
+
+  """
+  column name
+  """
+  dataHash
+
+  """
+  column name
+  """
+  dataSize
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  spec
+
+  """
+  column name
+  """
+  summary
+
+  """
+  column name
+  """
+  tagNames
+
+  """
+  column name
+  """
+  type
+
+  """
+  column name
+  """
+  updatedAt
+}
+
+"""
+columns and relationships of "sl.nodes"
+"""
+type sl_nodes {
+  """
+  An array relationship
+  """
+  branchNodes("distinct select on columns" distinct_on: [sl_branch_nodes_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_branch_nodes_order_by!], "filter the rows returned" where: sl_branch_nodes_bool_exp): [sl_branch_nodes!]!
+
+  createdAt: timestamptz!
+
+  format: sl_node_format_enum!
+
+  id: Int!
+
+  uri: String!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.nodes". All fields are combined with a logical 'AND'.
+"""
+input sl_nodes_bool_exp {
+  _and: [sl_nodes_bool_exp]
+
+  _not: sl_nodes_bool_exp
+
+  _or: [sl_nodes_bool_exp]
+
+  branchNodes: sl_branch_nodes_bool_exp
+
+  createdAt: timestamptz_comparison_exp
+
+  format: sl_node_format_enum_comparison_exp
+
+  id: Int_comparison_exp
+
+  uri: String_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.nodes"
+"""
+input sl_nodes_order_by {
+  createdAt: order_by
+
+  format: order_by
+
+  id: order_by
+
+  uri: order_by
+}
+
+"""
+primary key columns input for table: "sl.nodes"
+"""
+input sl_nodes_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.nodes"
+"""
+enum sl_nodes_select_column {
+  """
+  column name
+  """
+  createdAt
+
+  """
+  column name
+  """
+  format
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  uri
+}
+
+"""
+columns and relationships of "sl.permission_name"
+"""
+type sl_permission_name {
+  comment: String
+
+  value: String!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.permission_name". All fields are combined with a logical 'AND'.
+"""
+input sl_permission_name_bool_exp {
+  _and: [sl_permission_name_bool_exp]
+
+  _not: sl_permission_name_bool_exp
+
+  _or: [sl_permission_name_bool_exp]
+
+  comment: String_comparison_exp
+
+  value: String_comparison_exp
+}
+
+enum sl_permission_name_enum {
+  project_read
+
+  workspace_activity_read
+
+  """
+  Front-end only
+  """
+  workspace_automation_logs_view
+
+  workspace_billing
+
+  workspace_email_domain_create_update_delete
+
+  workspace_email_domain_read
+
+  """
+  Front-end only
+  """
+  workspace_explorer_view
+
+  workspace_groups_create
+
+  """
+  frontend only
+  """
+  workspace_groups_view
+
+  workspace_integration_create_update_delete
+
+  workspace_internal_groups_join
+
+  workspace_internal_groups_read
+
+  workspace_internal_projects_join
+
+  workspace_internal_projects_read
+
+  workspace_members_approve
+
+  workspace_members_delete
+
+  workspace_members_invite
+
+  """
+  controls ability to view both pending join requests and pending invitations
+  """
+  workspace_members_pending_read
+
+  workspace_members_promote
+
+  workspace_members_read
+
+  workspace_private_projects_read
+
+  workspace_projects_create
+
+  workspace_projects_view
+
+  workspace_public_groups_join
+
+  workspace_public_projects_join
+
+  workspace_settings_create_update_delete
+
+  workspace_settings_read
+
+  workspace_unpublished_branches_read
+}
+
+"""
+expression to compare columns of type sl_permission_name_enum. All fields are combined with logical 'AND'.
+"""
+input sl_permission_name_enum_comparison_exp {
+  _eq: sl_permission_name_enum
+
+  _in: [sl_permission_name_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_permission_name_enum
+
+  _nin: [sl_permission_name_enum!]
+}
+
+"""
+ordering options when selecting data from "sl.permission_name"
+"""
+input sl_permission_name_order_by {
+  comment: order_by
+
+  value: order_by
+}
+
+"""
+primary key columns input for table: "sl.permission_name"
+"""
+input sl_permission_name_pk_columns_input {
+  value: String!
+}
+
+"""
+select columns of table "sl.permission_name"
+"""
+enum sl_permission_name_select_column {
+  """
+  column name
+  """
+  comment
+
+  """
+  column name
+  """
+  value
+}
+
+enum sl_project_type_enum {
+  cli
+
+  local
+
+  vcs
+
+  web
+}
+
+"""
+expression to compare columns of type sl_project_type_enum. All fields are combined with logical 'AND'.
+"""
+input sl_project_type_enum_comparison_exp {
+  _eq: sl_project_type_enum
+
+  _in: [sl_project_type_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_project_type_enum
+
+  _nin: [sl_project_type_enum!]
+}
+
+"""
+columns and relationships of "sl.project_user_permissions"
+"""
+type sl_project_user_permissions {
+  permission: String
+
+  project_id: Int
+
+  role: String
+
+  user_id: Int
+
+  workspace_id: Int
+
+  workspace_member_id: Int
+}
+
+"""
+Boolean expression to filter rows from the table "sl.project_user_permissions". All fields are combined with a logical 'AND'.
+"""
+input sl_project_user_permissions_bool_exp {
+  _and: [sl_project_user_permissions_bool_exp]
+
+  _not: sl_project_user_permissions_bool_exp
+
+  _or: [sl_project_user_permissions_bool_exp]
+
+  permission: String_comparison_exp
+
+  project_id: Int_comparison_exp
+
+  role: String_comparison_exp
+
+  user_id: Int_comparison_exp
+
+  workspace_id: Int_comparison_exp
+
+  workspace_member_id: Int_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.project_user_permissions"
+"""
+input sl_project_user_permissions_order_by {
+  permission: order_by
+
+  project_id: order_by
+
+  role: order_by
+
+  user_id: order_by
+
+  workspace_id: order_by
+
+  workspace_member_id: order_by
+}
+
+"""
+select columns of table "sl.project_user_permissions"
+"""
+enum sl_project_user_permissions_select_column {
+  """
+  column name
+  """
+  permission
+
+  """
+  column name
+  """
+  project_id
+
+  """
+  column name
+  """
+  role
+
+  """
+  column name
+  """
+  user_id
+
+  """
+  column name
+  """
+  workspace_id
+
+  """
+  column name
+  """
+  workspace_member_id
+}
+
+enum sl_project_visibility_enum {
+  internal
+
+  private
+
+  public
+}
+
+"""
+expression to compare columns of type sl_project_visibility_enum. All fields are combined with logical 'AND'.
+"""
+input sl_project_visibility_enum_comparison_exp {
+  _eq: sl_project_visibility_enum
+
+  _in: [sl_project_visibility_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_project_visibility_enum
+
+  _nin: [sl_project_visibility_enum!]
+}
+
+"""
+columns and relationships of "sl.projects"
+"""
+type sl_projects {
+  """
+  An array relationship
+  """
+  branches("distinct select on columns" distinct_on: [sl_branches_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_branches_order_by!], "filter the rows returned" where: sl_branches_bool_exp): [sl_branches!]!
+
+  createdAt: timestamptz!
+
+  creatorId: Int
+
+  description: String
+
+  externalId: String
+
+  externalOrgSlug: String
+
+  externalSlug: String
+
+  externalStarCount: Int
+
+  """
+  An object relationship
+  """
+  group: sl_groups
+
+  groupId: String
+
+  iconColor: String
+
+  iconName: String
+
+  id: Int!
+
+  isDesignLibrary: Boolean!
+
+  name: String!
+
+  pinned: Boolean!
+
+  remoteUrlHttp: String
+
+  remoteUrlSsh: String
+
+  """
+  An object relationship
+  """
+  resolvedWorkspaceIntegration: sl_resolved_workspace_integrations
+
+  slug: String!
+
+  type: sl_project_type_enum
+
+  updatedAt: timestamptz!
+
+  """
+  An array relationship
+  """
+  userPermissions("distinct select on columns" distinct_on: [sl_project_user_permissions_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_project_user_permissions_order_by!], "filter the rows returned" where: sl_project_user_permissions_bool_exp): [sl_project_user_permissions!]!
+
+  visibility: sl_project_visibility_enum!
+
+  """
+  An object relationship
+  """
+  workspace: sl_workspaces!
+
+  workspaceId: Int!
+
+  """
+  An object relationship
+  """
+  workspaceIntegration: sl_workspace_integrations
+
+  workspaceIntegrationId: Int
+}
+
+"""
+Boolean expression to filter rows from the table "sl.projects". All fields are combined with a logical 'AND'.
+"""
+input sl_projects_bool_exp {
+  _and: [sl_projects_bool_exp]
+
+  _not: sl_projects_bool_exp
+
+  _or: [sl_projects_bool_exp]
+
+  branches: sl_branches_bool_exp
+
+  createdAt: timestamptz_comparison_exp
+
+  creatorId: Int_comparison_exp
+
+  description: String_comparison_exp
+
+  externalId: String_comparison_exp
+
+  externalOrgSlug: String_comparison_exp
+
+  externalSlug: String_comparison_exp
+
+  externalStarCount: Int_comparison_exp
+
+  group: sl_groups_bool_exp
+
+  groupId: String_comparison_exp
+
+  iconColor: String_comparison_exp
+
+  iconName: String_comparison_exp
+
+  id: Int_comparison_exp
+
+  isDesignLibrary: Boolean_comparison_exp
+
+  name: String_comparison_exp
+
+  pinned: Boolean_comparison_exp
+
+  remoteUrlHttp: String_comparison_exp
+
+  remoteUrlSsh: String_comparison_exp
+
+  resolvedWorkspaceIntegration: sl_resolved_workspace_integrations_bool_exp
+
+  slug: String_comparison_exp
+
+  type: sl_project_type_enum_comparison_exp
+
+  updatedAt: timestamptz_comparison_exp
+
+  userPermissions: sl_project_user_permissions_bool_exp
+
+  visibility: sl_project_visibility_enum_comparison_exp
+
+  workspace: sl_workspaces_bool_exp
+
+  workspaceId: Int_comparison_exp
+
+  workspaceIntegration: sl_workspace_integrations_bool_exp
+
+  workspaceIntegrationId: Int_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.projects"
+"""
+input sl_projects_order_by {
+  createdAt: order_by
+
+  creatorId: order_by
+
+  description: order_by
+
+  externalId: order_by
+
+  externalOrgSlug: order_by
+
+  externalSlug: order_by
+
+  externalStarCount: order_by
+
+  group: sl_groups_order_by
+
+  groupId: order_by
+
+  iconColor: order_by
+
+  iconName: order_by
+
+  id: order_by
+
+  isDesignLibrary: order_by
+
+  name: order_by
+
+  pinned: order_by
+
+  remoteUrlHttp: order_by
+
+  remoteUrlSsh: order_by
+
+  resolvedWorkspaceIntegration: sl_resolved_workspace_integrations_order_by
+
+  slug: order_by
+
+  type: order_by
+
+  updatedAt: order_by
+
+  visibility: order_by
+
+  workspace: sl_workspaces_order_by
+
+  workspaceId: order_by
+
+  workspaceIntegration: sl_workspace_integrations_order_by
+
+  workspaceIntegrationId: order_by
+}
+
+"""
+primary key columns input for table: "sl.projects"
+"""
+input sl_projects_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.projects"
+"""
+enum sl_projects_select_column {
+  """
+  column name
+  """
+  createdAt
+
+  """
+  column name
+  """
+  creatorId
+
+  """
+  column name
+  """
+  description
+
+  """
+  column name
+  """
+  externalId
+
+  """
+  column name
+  """
+  externalOrgSlug
+
+  """
+  column name
+  """
+  externalSlug
+
+  """
+  column name
+  """
+  externalStarCount
+
+  """
+  column name
+  """
+  groupId
+
+  """
+  column name
+  """
+  iconColor
+
+  """
+  column name
+  """
+  iconName
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  isDesignLibrary
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  pinned
+
+  """
+  column name
+  """
+  remoteUrlHttp
+
+  """
+  column name
+  """
+  remoteUrlSsh
+
+  """
+  column name
+  """
+  slug
+
+  """
+  column name
+  """
+  type
+
+  """
+  column name
+  """
+  updatedAt
+
+  """
+  column name
+  """
+  visibility
+
+  """
+  column name
+  """
+  workspaceId
+
+  """
+  column name
+  """
+  workspaceIntegrationId
+}
+
+"""
+columns and relationships of "sl.resolved_workspace_integrations"
+"""
+type sl_resolved_workspace_integrations {
+  config("JSON select path" path: String): jsonb
+
+  id: Int
+
+  kind: String
+
+  name: String
+}
+
+"""
+Boolean expression to filter rows from the table "sl.resolved_workspace_integrations". All fields are combined with a logical 'AND'.
+"""
+input sl_resolved_workspace_integrations_bool_exp {
+  _and: [sl_resolved_workspace_integrations_bool_exp]
+
+  _not: sl_resolved_workspace_integrations_bool_exp
+
+  _or: [sl_resolved_workspace_integrations_bool_exp]
+
+  config: jsonb_comparison_exp
+
+  id: Int_comparison_exp
+
+  kind: String_comparison_exp
+
+  name: String_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.resolved_workspace_integrations"
+"""
+input sl_resolved_workspace_integrations_order_by {
+  config: order_by
+
+  id: order_by
+
+  kind: order_by
+
+  name: order_by
+}
+
+"""
+select columns of table "sl.resolved_workspace_integrations"
+"""
+enum sl_resolved_workspace_integrations_select_column {
+  """
+  column name
+  """
+  config
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  kind
+
+  """
+  column name
+  """
+  name
+}
+
+"""
+columns and relationships of "sl.role_name"
+"""
+type sl_role_name {
+  comment: String
+
+  """
+  An array relationship
+  """
+  permissions("distinct select on columns" distinct_on: [sl_role_permissions_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_role_permissions_order_by!], "filter the rows returned" where: sl_role_permissions_bool_exp): [sl_role_permissions!]!
+
+  """
+  An object relationship
+  """
+  priorityData: sl_role_priority
+
+  value: String!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.role_name". All fields are combined with a logical 'AND'.
+"""
+input sl_role_name_bool_exp {
+  _and: [sl_role_name_bool_exp]
+
+  _not: sl_role_name_bool_exp
+
+  _or: [sl_role_name_bool_exp]
+
+  comment: String_comparison_exp
+
+  permissions: sl_role_permissions_bool_exp
+
+  priorityData: sl_role_priority_bool_exp
+
+  value: String_comparison_exp
+}
+
+enum sl_role_name_enum {
+  admin
+
+  billing
+
+  guest
+
+  maker
+
+  owner
+
+  viewer
+}
+
+"""
+expression to compare columns of type sl_role_name_enum. All fields are combined with logical 'AND'.
+"""
+input sl_role_name_enum_comparison_exp {
+  _eq: sl_role_name_enum
+
+  _in: [sl_role_name_enum!]
+
+  _is_null: Boolean
+
+  _neq: sl_role_name_enum
+
+  _nin: [sl_role_name_enum!]
+}
+
+"""
+ordering options when selecting data from "sl.role_name"
+"""
+input sl_role_name_order_by {
+  comment: order_by
+
+  priorityData: sl_role_priority_order_by
+
+  value: order_by
+}
+
+"""
+primary key columns input for table: "sl.role_name"
+"""
+input sl_role_name_pk_columns_input {
+  value: String!
+}
+
+"""
+select columns of table "sl.role_name"
+"""
+enum sl_role_name_select_column {
+  """
+  column name
+  """
+  comment
+
+  """
+  column name
+  """
+  value
+}
+
+"""
+columns and relationships of "sl.role_permissions"
+"""
+type sl_role_permissions {
+  permission: sl_permission_name_enum!
+
+  role: sl_role_name_enum!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.role_permissions". All fields are combined with a logical 'AND'.
+"""
+input sl_role_permissions_bool_exp {
+  _and: [sl_role_permissions_bool_exp]
+
+  _not: sl_role_permissions_bool_exp
+
+  _or: [sl_role_permissions_bool_exp]
+
+  permission: sl_permission_name_enum_comparison_exp
+
+  role: sl_role_name_enum_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.role_permissions"
+"""
+input sl_role_permissions_order_by {
+  permission: order_by
+
+  role: order_by
+}
+
+"""
+primary key columns input for table: "sl.role_permissions"
+"""
+input sl_role_permissions_pk_columns_input {
+  permission: sl_permission_name_enum!
+
+  role: sl_role_name_enum!
+}
+
+"""
+select columns of table "sl.role_permissions"
+"""
+enum sl_role_permissions_select_column {
+  """
+  column name
+  """
+  permission
+
+  """
+  column name
+  """
+  role
+}
+
+"""
+columns and relationships of "sl.role_priority"
+"""
+type sl_role_priority {
+  id: Int!
+
+  priority: Int!
+
+  role: sl_role_name_enum!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.role_priority". All fields are combined with a logical 'AND'.
+"""
+input sl_role_priority_bool_exp {
+  _and: [sl_role_priority_bool_exp]
+
+  _not: sl_role_priority_bool_exp
+
+  _or: [sl_role_priority_bool_exp]
+
+  id: Int_comparison_exp
+
+  priority: Int_comparison_exp
+
+  role: sl_role_name_enum_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.role_priority"
+"""
+input sl_role_priority_order_by {
+  id: order_by
+
+  priority: order_by
+
+  role: order_by
+}
+
+"""
+primary key columns input for table: "sl.role_priority"
+"""
+input sl_role_priority_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.role_priority"
+"""
+enum sl_role_priority_select_column {
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  priority
+
+  """
+  column name
+  """
+  role
+}
+
+"""
+columns and relationships of "sl.setting_name"
+"""
+type sl_setting_name {
+  comment: String
+
+  value: String!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.setting_name". All fields are combined with a logical 'AND'.
+"""
+input sl_setting_name_bool_exp {
+  _and: [sl_setting_name_bool_exp]
+
+  _not: sl_setting_name_bool_exp
+
+  _or: [sl_setting_name_bool_exp]
+
+  comment: String_comparison_exp
+
+  value: String_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.setting_name"
+"""
+input sl_setting_name_order_by {
+  comment: order_by
+
+  value: order_by
+}
+
+"""
+primary key columns input for table: "sl.setting_name"
+"""
+input sl_setting_name_pk_columns_input {
+  value: String!
+}
+
+"""
+select columns of table "sl.setting_name"
+"""
+enum sl_setting_name_select_column {
+  """
+  column name
+  """
+  comment
+
+  """
+  column name
+  """
+  value
+}
+
+input sl_sl_search_nodes_args {
+  branch: String
+
+  projectid: Int
+
+  search: String
+
+  snapshottype: String
+
+  workspaceid: Int
+}
+
+"""
+columns and relationships of "sl.system_status"
+"""
+type sl_system_status {
+  is_fresh_install: Boolean
+}
+
+"""
+Boolean expression to filter rows from the table "sl.system_status". All fields are combined with a logical 'AND'.
+"""
+input sl_system_status_bool_exp {
+  _and: [sl_system_status_bool_exp]
+
+  _not: sl_system_status_bool_exp
+
+  _or: [sl_system_status_bool_exp]
+
+  is_fresh_install: Boolean_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.system_status"
+"""
+input sl_system_status_order_by {
+  is_fresh_install: order_by
+}
+
+"""
+select columns of table "sl.system_status"
+"""
+enum sl_system_status_select_column {
+  """
+  column name
+  """
+  is_fresh_install
+}
+
+"""
+Dummy table to turn search_nodes results into a gql entity
+
+
+columns and relationships of "sl.type_search_node_results"
+"""
+type sl_type_search_node_results {
+  """
+  An object relationship
+  """
+  branchNode: sl_branch_nodes!
+
+  branch_id: Int!
+
+  branch_is_default: Boolean!
+
+  branch_node_id: Int!
+
+  branch_node_internal: Boolean!
+
+  branch_node_is_file: Boolean!
+
+  branch_node_is_latest_version: Boolean!
+
+  branch_node_name: String!
+
+  branch_node_version: String!
+
+  branch_slug: String!
+
+  highlighted_data: String
+
+  highlighted_name: String
+
+  highlighted_summary: String
+
+  id: Int!
+
+  """
+  An object relationship
+  """
+  node: sl_nodes!
+
+  node_id: Int!
+
+  node_uri: String!
+
+  """
+  An object relationship
+  """
+  project: sl_projects!
+
+  project_description: String
+
+  project_icon_name: String
+
+  project_id: Int!
+
+  project_is_design_library: Boolean!
+
+  project_name: String!
+
+  project_slug: String!
+
+  project_visibility: String!
+
+  score: Float
+
+  snapshot_id: Int!
+
+  snapshot_spec: String!
+
+  snapshot_summary: String
+
+  snapshot_tag_names: _text!
+
+  snapshot_type: String!
+
+  snapshot_updated_at: timestamptz!
+
+  """
+  An object relationship
+  """
+  workspace: sl_workspaces!
+
+  workspace_id: Int!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.type_search_node_results". All fields are combined with a logical 'AND'.
+"""
+input sl_type_search_node_results_bool_exp {
+  _and: [sl_type_search_node_results_bool_exp]
+
+  _not: sl_type_search_node_results_bool_exp
+
+  _or: [sl_type_search_node_results_bool_exp]
+
+  branchNode: sl_branch_nodes_bool_exp
+
+  branch_id: Int_comparison_exp
+
+  branch_is_default: Boolean_comparison_exp
+
+  branch_node_id: Int_comparison_exp
+
+  branch_node_internal: Boolean_comparison_exp
+
+  branch_node_is_file: Boolean_comparison_exp
+
+  branch_node_is_latest_version: Boolean_comparison_exp
+
+  branch_node_name: String_comparison_exp
+
+  branch_node_version: String_comparison_exp
+
+  branch_slug: String_comparison_exp
+
+  highlighted_data: String_comparison_exp
+
+  highlighted_name: String_comparison_exp
+
+  highlighted_summary: String_comparison_exp
+
+  id: Int_comparison_exp
+
+  node: sl_nodes_bool_exp
+
+  node_id: Int_comparison_exp
+
+  node_uri: String_comparison_exp
+
+  project: sl_projects_bool_exp
+
+  project_description: String_comparison_exp
+
+  project_icon_name: String_comparison_exp
+
+  project_id: Int_comparison_exp
+
+  project_is_design_library: Boolean_comparison_exp
+
+  project_name: String_comparison_exp
+
+  project_slug: String_comparison_exp
+
+  project_visibility: String_comparison_exp
+
+  score: Float_comparison_exp
+
+  snapshot_id: Int_comparison_exp
+
+  snapshot_spec: String_comparison_exp
+
+  snapshot_summary: String_comparison_exp
+
+  snapshot_tag_names: _text_comparison_exp
+
+  snapshot_type: String_comparison_exp
+
+  snapshot_updated_at: timestamptz_comparison_exp
+
+  workspace: sl_workspaces_bool_exp
+
+  workspace_id: Int_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.type_search_node_results"
+"""
+input sl_type_search_node_results_order_by {
+  branchNode: sl_branch_nodes_order_by
+
+  branch_id: order_by
+
+  branch_is_default: order_by
+
+  branch_node_id: order_by
+
+  branch_node_internal: order_by
+
+  branch_node_is_file: order_by
+
+  branch_node_is_latest_version: order_by
+
+  branch_node_name: order_by
+
+  branch_node_version: order_by
+
+  branch_slug: order_by
+
+  highlighted_data: order_by
+
+  highlighted_name: order_by
+
+  highlighted_summary: order_by
+
+  id: order_by
+
+  node: sl_nodes_order_by
+
+  node_id: order_by
+
+  node_uri: order_by
+
+  project: sl_projects_order_by
+
+  project_description: order_by
+
+  project_icon_name: order_by
+
+  project_id: order_by
+
+  project_is_design_library: order_by
+
+  project_name: order_by
+
+  project_slug: order_by
+
+  project_visibility: order_by
+
+  score: order_by
+
+  snapshot_id: order_by
+
+  snapshot_spec: order_by
+
+  snapshot_summary: order_by
+
+  snapshot_tag_names: order_by
+
+  snapshot_type: order_by
+
+  snapshot_updated_at: order_by
+
+  workspace: sl_workspaces_order_by
+
+  workspace_id: order_by
+}
+
+"""
+primary key columns input for table: "sl.type_search_node_results"
+"""
+input sl_type_search_node_results_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.type_search_node_results"
+"""
+enum sl_type_search_node_results_select_column {
+  """
+  column name
+  """
+  branch_id
+
+  """
+  column name
+  """
+  branch_is_default
+
+  """
+  column name
+  """
+  branch_node_id
+
+  """
+  column name
+  """
+  branch_node_internal
+
+  """
+  column name
+  """
+  branch_node_is_file
+
+  """
+  column name
+  """
+  branch_node_is_latest_version
+
+  """
+  column name
+  """
+  branch_node_name
+
+  """
+  column name
+  """
+  branch_node_version
+
+  """
+  column name
+  """
+  branch_slug
+
+  """
+  column name
+  """
+  highlighted_data
+
+  """
+  column name
+  """
+  highlighted_name
+
+  """
+  column name
+  """
+  highlighted_summary
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  node_id
+
+  """
+  column name
+  """
+  node_uri
+
+  """
+  column name
+  """
+  project_description
+
+  """
+  column name
+  """
+  project_icon_name
+
+  """
+  column name
+  """
+  project_id
+
+  """
+  column name
+  """
+  project_is_design_library
+
+  """
+  column name
+  """
+  project_name
+
+  """
+  column name
+  """
+  project_slug
+
+  """
+  column name
+  """
+  project_visibility
+
+  """
+  column name
+  """
+  score
+
+  """
+  column name
+  """
+  snapshot_id
+
+  """
+  column name
+  """
+  snapshot_spec
+
+  """
+  column name
+  """
+  snapshot_summary
+
+  """
+  column name
+  """
+  snapshot_tag_names
+
+  """
+  column name
+  """
+  snapshot_type
+
+  """
+  column name
+  """
+  snapshot_updated_at
+
+  """
+  column name
+  """
+  workspace_id
+}
+
+"""
+columns and relationships of "sl.workspace_features"
+"""
+type sl_workspace_features {
+  """
+  An object relationship
+  """
+  feature: sl_features!
+
+  featureId: Int!
+
+  id: Int!
+
+  maxQuantity: Int
+
+  """
+  An object relationship
+  """
+  workspace: sl_workspaces!
+
+  workspaceId: Int!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.workspace_features". All fields are combined with a logical 'AND'.
+"""
+input sl_workspace_features_bool_exp {
+  _and: [sl_workspace_features_bool_exp]
+
+  _not: sl_workspace_features_bool_exp
+
+  _or: [sl_workspace_features_bool_exp]
+
+  feature: sl_features_bool_exp
+
+  featureId: Int_comparison_exp
+
+  id: Int_comparison_exp
+
+  maxQuantity: Int_comparison_exp
+
+  workspace: sl_workspaces_bool_exp
+
+  workspaceId: Int_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.workspace_features"
+"""
+input sl_workspace_features_order_by {
+  feature: sl_features_order_by
+
+  featureId: order_by
+
+  id: order_by
+
+  maxQuantity: order_by
+
+  workspace: sl_workspaces_order_by
+
+  workspaceId: order_by
+}
+
+"""
+primary key columns input for table: "sl.workspace_features"
+"""
+input sl_workspace_features_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.workspace_features"
+"""
+enum sl_workspace_features_select_column {
+  """
+  column name
+  """
+  featureId
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  maxQuantity
+
+  """
+  column name
+  """
+  workspaceId
+}
+
+"""
+columns and relationships of "sl.workspace_integrations"
+"""
+type sl_workspace_integrations {
+  allowUserLogin: Boolean!
+
+  allowUserRegister: Boolean!
+
+  config("JSON select path" path: String): jsonb!
+
+  createdAt: timestamptz!
+
+  enabled: Boolean!
+
+  """
+  A computed field, executes function "sl.sl_workspace_integration_has_secrets"
+  """
+  has_secrets("JSON select path" path: String): jsonb
+
+  id: Int!
+
+  """
+  An object relationship
+  """
+  integration: sl_integrations!
+
+  integrationId: Int!
+
+  name: String!
+
+  updatedAt: timestamptz!
+
+  """
+  An object relationship
+  """
+  workspace: sl_workspaces!
+
+  workspaceId: Int!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.workspace_integrations". All fields are combined with a logical 'AND'.
+"""
+input sl_workspace_integrations_bool_exp {
+  _and: [sl_workspace_integrations_bool_exp]
+
+  _not: sl_workspace_integrations_bool_exp
+
+  _or: [sl_workspace_integrations_bool_exp]
+
+  allowUserLogin: Boolean_comparison_exp
+
+  allowUserRegister: Boolean_comparison_exp
+
+  config: jsonb_comparison_exp
+
+  createdAt: timestamptz_comparison_exp
+
+  enabled: Boolean_comparison_exp
+
+  id: Int_comparison_exp
+
+  integration: sl_integrations_bool_exp
+
+  integrationId: Int_comparison_exp
+
+  name: String_comparison_exp
+
+  updatedAt: timestamptz_comparison_exp
+
+  workspace: sl_workspaces_bool_exp
+
+  workspaceId: Int_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.workspace_integrations"
+"""
+input sl_workspace_integrations_order_by {
+  allowUserLogin: order_by
+
+  allowUserRegister: order_by
+
+  config: order_by
+
+  createdAt: order_by
+
+  enabled: order_by
+
+  id: order_by
+
+  integration: sl_integrations_order_by
+
+  integrationId: order_by
+
+  name: order_by
+
+  updatedAt: order_by
+
+  workspace: sl_workspaces_order_by
+
+  workspaceId: order_by
+}
+
+"""
+primary key columns input for table: "sl.workspace_integrations"
+"""
+input sl_workspace_integrations_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.workspace_integrations"
+"""
+enum sl_workspace_integrations_select_column {
+  """
+  column name
+  """
+  allowUserLogin
+
+  """
+  column name
+  """
+  allowUserRegister
+
+  """
+  column name
+  """
+  config
+
+  """
+  column name
+  """
+  createdAt
+
+  """
+  column name
+  """
+  enabled
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  integrationId
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  updatedAt
+
+  """
+  column name
+  """
+  workspaceId
+}
+
+"""
+columns and relationships of "sl.workspace_invitations"
+"""
+type sl_workspace_invitations {
+  email: citext!
+
+  id: Int!
+
+  invitedByUserId: Int
+
+  """
+  An object relationship
+  """
+  role: sl_role_name
+
+  roleName: sl_role_name_enum
+
+  """
+  An object relationship
+  """
+  workspace: sl_workspaces
+
+  workspaceId: Int
+}
+
+"""
+Boolean expression to filter rows from the table "sl.workspace_invitations". All fields are combined with a logical 'AND'.
+"""
+input sl_workspace_invitations_bool_exp {
+  _and: [sl_workspace_invitations_bool_exp]
+
+  _not: sl_workspace_invitations_bool_exp
+
+  _or: [sl_workspace_invitations_bool_exp]
+
+  email: citext_comparison_exp
+
+  id: Int_comparison_exp
+
+  invitedByUserId: Int_comparison_exp
+
+  role: sl_role_name_bool_exp
+
+  roleName: sl_role_name_enum_comparison_exp
+
+  workspace: sl_workspaces_bool_exp
+
+  workspaceId: Int_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.workspace_invitations"
+"""
+input sl_workspace_invitations_order_by {
+  email: order_by
+
+  id: order_by
+
+  invitedByUserId: order_by
+
+  role: sl_role_name_order_by
+
+  roleName: order_by
+
+  workspace: sl_workspaces_order_by
+
+  workspaceId: order_by
+}
+
+"""
+primary key columns input for table: "sl.workspace_invitations"
+"""
+input sl_workspace_invitations_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.workspace_invitations"
+"""
+enum sl_workspace_invitations_select_column {
+  """
+  column name
+  """
+  email
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  invitedByUserId
+
+  """
+  column name
+  """
+  roleName
+
+  """
+  column name
+  """
+  workspaceId
+}
+
+"""
+columns and relationships of "sl.workspace_usage"
+"""
+type sl_workspace_usage {
+  billingAdditionalMemberCount: bigint
+
+  billingIncludedMemberCount: bigint
+
+  guestCount: bigint
+
+  memberCount: bigint
+
+  projectCount: bigint
+
+  userCount: bigint
+
+  """
+  An object relationship
+  """
+  workspace: sl_workspaces
+
+  workspaceId: Int
+}
+
+"""
+Boolean expression to filter rows from the table "sl.workspace_usage". All fields are combined with a logical 'AND'.
+"""
+input sl_workspace_usage_bool_exp {
+  _and: [sl_workspace_usage_bool_exp]
+
+  _not: sl_workspace_usage_bool_exp
+
+  _or: [sl_workspace_usage_bool_exp]
+
+  billingAdditionalMemberCount: bigint_comparison_exp
+
+  billingIncludedMemberCount: bigint_comparison_exp
+
+  guestCount: bigint_comparison_exp
+
+  memberCount: bigint_comparison_exp
+
+  projectCount: bigint_comparison_exp
+
+  userCount: bigint_comparison_exp
+
+  workspace: sl_workspaces_bool_exp
+
+  workspaceId: Int_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.workspace_usage"
+"""
+input sl_workspace_usage_order_by {
+  billingAdditionalMemberCount: order_by
+
+  billingIncludedMemberCount: order_by
+
+  guestCount: order_by
+
+  memberCount: order_by
+
+  projectCount: order_by
+
+  userCount: order_by
+
+  workspace: sl_workspaces_order_by
+
+  workspaceId: order_by
+}
+
+"""
+select columns of table "sl.workspace_usage"
+"""
+enum sl_workspace_usage_select_column {
+  """
+  column name
+  """
+  billingAdditionalMemberCount
+
+  """
+  column name
+  """
+  billingIncludedMemberCount
+
+  """
+  column name
+  """
+  guestCount
+
+  """
+  column name
+  """
+  memberCount
+
+  """
+  column name
+  """
+  projectCount
+
+  """
+  column name
+  """
+  userCount
+
+  """
+  column name
+  """
+  workspaceId
+}
+
+"""
+columns and relationships of "sl.workspace_user_permissions"
+"""
+type sl_workspace_user_permissions {
+  permission: String
+
+  role: String
+
+  user_id: Int
+
+  workspace_id: Int
+
+  workspace_member_id: Int
+}
+
+"""
+Boolean expression to filter rows from the table "sl.workspace_user_permissions". All fields are combined with a logical 'AND'.
+"""
+input sl_workspace_user_permissions_bool_exp {
+  _and: [sl_workspace_user_permissions_bool_exp]
+
+  _not: sl_workspace_user_permissions_bool_exp
+
+  _or: [sl_workspace_user_permissions_bool_exp]
+
+  permission: String_comparison_exp
+
+  role: String_comparison_exp
+
+  user_id: Int_comparison_exp
+
+  workspace_id: Int_comparison_exp
+
+  workspace_member_id: Int_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.workspace_user_permissions"
+"""
+input sl_workspace_user_permissions_order_by {
+  permission: order_by
+
+  role: order_by
+
+  user_id: order_by
+
+  workspace_id: order_by
+
+  workspace_member_id: order_by
+}
+
+"""
+select columns of table "sl.workspace_user_permissions"
+"""
+enum sl_workspace_user_permissions_select_column {
+  """
+  column name
+  """
+  permission
+
+  """
+  column name
+  """
+  role
+
+  """
+  column name
+  """
+  user_id
+
+  """
+  column name
+  """
+  workspace_id
+
+  """
+  column name
+  """
+  workspace_member_id
+}
+
+"""
+columns and relationships of "sl.workspaces"
+"""
+type sl_workspaces {
+  """
+  An object relationship
+  """
+  billingAccount: sl_billing_accounts!
+
+  createdAt: timestamptz
+
+  creatorId: Int
+
+  description: String
+
+  domain: citext
+
+  """
+  An array relationship
+  """
+  features("distinct select on columns" distinct_on: [sl_workspace_features_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_features_order_by!], "filter the rows returned" where: sl_workspace_features_bool_exp): [sl_workspace_features!]!
+
+  googleTagManager: String
+
+  hidePoweredBy: Boolean!
+
+  hideSignIn: Boolean!
+
+  """
+  The markdown that is rendered on the workspace home screen
+  """
+  homeContent: String
+
+  id: Int!
+
+  """
+  An array relationship
+  """
+  integrations("distinct select on columns" distinct_on: [sl_workspace_integrations_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_integrations_order_by!], "filter the rows returned" where: sl_workspace_integrations_bool_exp): [sl_workspace_integrations!]!
+
+  """
+  An array relationship
+  """
+  invitations("distinct select on columns" distinct_on: [sl_workspace_invitations_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_invitations_order_by!], "filter the rows returned" where: sl_workspace_invitations_bool_exp): [sl_workspace_invitations!]!
+
+  isTrial: Boolean!
+
+  localizejs: String
+
+  logoUrl: String
+
+  migratedFromClassic: Boolean!
+
+  migratedFromNext: Boolean!
+
+  """
+  An array relationship
+  """
+  myPermissions("distinct select on columns" distinct_on: [sl_workspace_user_permissions_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_user_permissions_order_by!], "filter the rows returned" where: sl_workspace_user_permissions_bool_exp): [sl_workspace_user_permissions!]!
+
+  name: String!
+
+  """
+  An array relationship
+  """
+  projects("distinct select on columns" distinct_on: [sl_projects_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_projects_order_by!], "filter the rows returned" where: sl_projects_bool_exp): [sl_projects!]!
+
+  redirects: String
+
+  slug: String!
+
+  """
+  A computed field, executes function "sl.sl_workspace_snapshot_count"
+  """
+  snapshotCount: bigint
+
+  theme("JSON select path" path: String): jsonb
+
+  updatedAt: timestamptz
+
+  """
+  An object relationship
+  """
+  usage: sl_workspace_usage
+
+  useNewElements: Boolean!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.workspaces". All fields are combined with a logical 'AND'.
+"""
+input sl_workspaces_bool_exp {
+  _and: [sl_workspaces_bool_exp]
+
+  _not: sl_workspaces_bool_exp
+
+  _or: [sl_workspaces_bool_exp]
+
+  billingAccount: sl_billing_accounts_bool_exp
+
+  createdAt: timestamptz_comparison_exp
+
+  creatorId: Int_comparison_exp
+
+  description: String_comparison_exp
+
+  domain: citext_comparison_exp
+
+  features: sl_workspace_features_bool_exp
+
+  googleTagManager: String_comparison_exp
+
+  hidePoweredBy: Boolean_comparison_exp
+
+  hideSignIn: Boolean_comparison_exp
+
+  homeContent: String_comparison_exp
+
+  id: Int_comparison_exp
+
+  integrations: sl_workspace_integrations_bool_exp
+
+  invitations: sl_workspace_invitations_bool_exp
+
+  isTrial: Boolean_comparison_exp
+
+  localizejs: String_comparison_exp
+
+  logoUrl: String_comparison_exp
+
+  migratedFromClassic: Boolean_comparison_exp
+
+  migratedFromNext: Boolean_comparison_exp
+
+  myPermissions: sl_workspace_user_permissions_bool_exp
+
+  name: String_comparison_exp
+
+  projects: sl_projects_bool_exp
+
+  redirects: String_comparison_exp
+
+  slug: String_comparison_exp
+
+  theme: jsonb_comparison_exp
+
+  updatedAt: timestamptz_comparison_exp
+
+  usage: sl_workspace_usage_bool_exp
+
+  useNewElements: Boolean_comparison_exp
+}
+
+"""
+ordering options when selecting data from "sl.workspaces"
+"""
+input sl_workspaces_order_by {
+  billingAccount: sl_billing_accounts_order_by
+
+  createdAt: order_by
+
+  creatorId: order_by
+
+  description: order_by
+
+  domain: order_by
+
+  googleTagManager: order_by
+
+  hidePoweredBy: order_by
+
+  hideSignIn: order_by
+
+  homeContent: order_by
+
+  id: order_by
+
+  isTrial: order_by
+
+  localizejs: order_by
+
+  logoUrl: order_by
+
+  migratedFromClassic: order_by
+
+  migratedFromNext: order_by
+
+  name: order_by
+
+  redirects: order_by
+
+  slug: order_by
+
+  theme: order_by
+
+  updatedAt: order_by
+
+  usage: sl_workspace_usage_order_by
+
+  useNewElements: order_by
+}
+
+"""
+primary key columns input for table: "sl.workspaces"
+"""
+input sl_workspaces_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.workspaces"
+"""
+enum sl_workspaces_select_column {
+  """
+  column name
+  """
+  createdAt
+
+  """
+  column name
+  """
+  creatorId
+
+  """
+  column name
+  """
+  description
+
+  """
+  column name
+  """
+  domain
+
+  """
+  column name
+  """
+  googleTagManager
+
+  """
+  column name
+  """
+  hidePoweredBy
+
+  """
+  column name
+  """
+  hideSignIn
+
+  """
+  column name
+  """
+  homeContent
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  isTrial
+
+  """
+  column name
+  """
+  localizejs
+
+  """
+  column name
+  """
+  logoUrl
+
+  """
+  column name
+  """
+  migratedFromClassic
+
+  """
+  column name
+  """
+  migratedFromNext
+
+  """
+  column name
+  """
+  name
+
+  """
+  column name
+  """
+  redirects
+
+  """
+  column name
+  """
+  slug
+
+  """
+  column name
+  """
+  theme
+
+  """
+  column name
+  """
+  updatedAt
+
+  """
+  column name
+  """
+  useNewElements
+}
+
+"""
+columns and relationships of "sl.yjs_documents"
+"""
+type sl_yjs_documents {
+  """
+  An object relationship
+  """
+  branch: sl_branches!
+
+  branchId: Int!
+
+  createdAt: timestamptz!
+
+  id: Int!
+
+  update: bytea
+
+  updatedAt: timestamptz!
+
+  """
+  An array relationship
+  """
+  yjsSnapshots("distinct select on columns" distinct_on: [sl_yjs_snapshots_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_yjs_snapshots_order_by!], "filter the rows returned" where: sl_yjs_snapshots_bool_exp): [sl_yjs_snapshots!]!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.yjs_documents". All fields are combined with a logical 'AND'.
+"""
+input sl_yjs_documents_bool_exp {
+  _and: [sl_yjs_documents_bool_exp]
+
+  _not: sl_yjs_documents_bool_exp
+
+  _or: [sl_yjs_documents_bool_exp]
+
+  branch: sl_branches_bool_exp
+
+  branchId: Int_comparison_exp
+
+  createdAt: timestamptz_comparison_exp
+
+  id: Int_comparison_exp
+
+  update: bytea_comparison_exp
+
+  updatedAt: timestamptz_comparison_exp
+
+  yjsSnapshots: sl_yjs_snapshots_bool_exp
+}
+
+"""
+ordering options when selecting data from "sl.yjs_documents"
+"""
+input sl_yjs_documents_order_by {
+  branch: sl_branches_order_by
+
+  branchId: order_by
+
+  createdAt: order_by
+
+  id: order_by
+
+  update: order_by
+
+  updatedAt: order_by
+}
+
+"""
+primary key columns input for table: "sl.yjs_documents"
+"""
+input sl_yjs_documents_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.yjs_documents"
+"""
+enum sl_yjs_documents_select_column {
+  """
+  column name
+  """
+  branchId
+
+  """
+  column name
+  """
+  createdAt
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  update
+
+  """
+  column name
+  """
+  updatedAt
+}
+
+"""
+columns and relationships of "sl.yjs_snapshots"
+"""
+type sl_yjs_snapshots {
+  auto_saved: Boolean!
+
+  createdAt: timestamptz!
+
+  docId: Int!
+
+  hash: String
+
+  id: Int!
+
+  snapshot: bytea!
+
+  """
+  An object relationship
+  """
+  yjsDocument: sl_yjs_documents!
+}
+
+"""
+Boolean expression to filter rows from the table "sl.yjs_snapshots". All fields are combined with a logical 'AND'.
+"""
+input sl_yjs_snapshots_bool_exp {
+  _and: [sl_yjs_snapshots_bool_exp]
+
+  _not: sl_yjs_snapshots_bool_exp
+
+  _or: [sl_yjs_snapshots_bool_exp]
+
+  auto_saved: Boolean_comparison_exp
+
+  createdAt: timestamptz_comparison_exp
+
+  docId: Int_comparison_exp
+
+  hash: String_comparison_exp
+
+  id: Int_comparison_exp
+
+  snapshot: bytea_comparison_exp
+
+  yjsDocument: sl_yjs_documents_bool_exp
+}
+
+"""
+ordering options when selecting data from "sl.yjs_snapshots"
+"""
+input sl_yjs_snapshots_order_by {
+  auto_saved: order_by
+
+  createdAt: order_by
+
+  docId: order_by
+
+  hash: order_by
+
+  id: order_by
+
+  snapshot: order_by
+
+  yjsDocument: sl_yjs_documents_order_by
+}
+
+"""
+primary key columns input for table: "sl.yjs_snapshots"
+"""
+input sl_yjs_snapshots_pk_columns_input {
+  id: Int!
+}
+
+"""
+select columns of table "sl.yjs_snapshots"
+"""
+enum sl_yjs_snapshots_select_column {
+  """
+  column name
+  """
+  auto_saved
+
+  """
+  column name
+  """
+  createdAt
+
+  """
+  column name
+  """
+  docId
+
+  """
+  column name
+  """
+  hash
+
+  """
+  column name
+  """
+  id
+
+  """
+  column name
+  """
+  snapshot
+}
+
+"""
+subscription root
+"""
+type subscription_root {
+  """
+  fetch data from the table: "sl.billing_accounts" using primary key columns
+  """
+  billingAccount(id: Int!): sl_billing_accounts
+
+  """
+  fetch data from the table: "sl.billing_accounts"
+  """
+  billingAccounts("distinct select on columns" distinct_on: [sl_billing_accounts_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_billing_accounts_order_by!], "filter the rows returned" where: sl_billing_accounts_bool_exp): [sl_billing_accounts!]!
+
+  """
+  fetch data from the table: "sl.billing_products" using primary key columns
+  """
+  billingProduct(id: Int!): sl_billing_products
+
+  """
+  fetch data from the table: "sl.billing_product_features" using primary key columns
+  """
+  billingProductFeature(id: Int!): sl_billing_product_features
+
+  """
+  fetch data from the table: "sl.billing_product_features"
+  """
+  billingProductFeatures("distinct select on columns" distinct_on: [sl_billing_product_features_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_billing_product_features_order_by!], "filter the rows returned" where: sl_billing_product_features_bool_exp): [sl_billing_product_features!]!
+
+  """
+  fetch data from the table: "sl.billing_product_name" using primary key columns
+  """
+  billingProductName(value: String!): sl_billing_product_name
+
+  """
+  fetch data from the table: "sl.billing_product_name"
+  """
+  billingProductNames("distinct select on columns" distinct_on: [sl_billing_product_name_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_billing_product_name_order_by!], "filter the rows returned" where: sl_billing_product_name_bool_exp): [sl_billing_product_name!]!
+
+  """
+  fetch data from the table: "sl.billing_products"
+  """
+  billingProducts("distinct select on columns" distinct_on: [sl_billing_products_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_billing_products_order_by!], "filter the rows returned" where: sl_billing_products_bool_exp): [sl_billing_products!]!
+
+  """
+  fetch data from the table: "sl.billing_status" using primary key columns
+  """
+  billingStatus(value: String!): sl_billing_status
+
+  """
+  fetch data from the table: "sl.billing_status"
+  """
+  billingStatuses("distinct select on columns" distinct_on: [sl_billing_status_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_billing_status_order_by!], "filter the rows returned" where: sl_billing_status_bool_exp): [sl_billing_status!]!
+
+  """
+  fetch data from the table: "sl.branches" using primary key columns
+  """
+  branch(id: Int!): sl_branches
+
+  """
+  fetch data from the table: "sl.branch_nodes" using primary key columns
+  """
+  branchNode(id: Int!): sl_branch_nodes
+
+  """
+  perform the action: "branchNodeMockUrl"
+  """
+  branchNodeMockUrl(branchSlug: String!, projectSlug: String!, uri: String!, version: Int, workspaceSlug: String!): MockUrlData!
+
+  """
+  fetch data from the table: "sl.branch_nodes"
+  """
+  branchNodes("distinct select on columns" distinct_on: [sl_branch_nodes_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_branch_nodes_order_by!], "filter the rows returned" where: sl_branch_nodes_bool_exp): [sl_branch_nodes!]!
+
+  """
+  fetch data from the table: "sl.branches"
+  """
+  branches("distinct select on columns" distinct_on: [sl_branches_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_branches_order_by!], "filter the rows returned" where: sl_branches_bool_exp): [sl_branches!]!
+
+  """
+  perform the action: "bundledBranchNode"
+  """
+  bundledBranchNode(branchSlug: String, projectSlug: String!, uri: String!, workspaceSlug: String!): BundledBranchNode!
+
+  """
+  perform the action: "emailHasWorkspace"
+  """
+  emailHasWorkspace(email: String!): EmailHasWorkspaceResult!
+
+  """
+  fetch data from the table: "sl.features" using primary key columns
+  """
+  feature(id: Int!): sl_features
+
+  """
+  fetch data from the table: "sl.feature_name" using primary key columns
+  """
+  featureName(value: String!): sl_feature_name
+
+  """
+  fetch data from the table: "sl.feature_name"
+  """
+  featureNames("distinct select on columns" distinct_on: [sl_feature_name_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_feature_name_order_by!], "filter the rows returned" where: sl_feature_name_bool_exp): [sl_feature_name!]!
+
+  """
+  fetch data from the table: "sl.feature_type" using primary key columns
+  """
+  featureType(value: String!): sl_feature_type
+
+  """
+  fetch data from the table: "sl.feature_type"
+  """
+  featureTypes("distinct select on columns" distinct_on: [sl_feature_type_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_feature_type_order_by!], "filter the rows returned" where: sl_feature_type_bool_exp): [sl_feature_type!]!
+
+  """
+  fetch data from the table: "sl.features"
+  """
+  features("distinct select on columns" distinct_on: [sl_features_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_features_order_by!], "filter the rows returned" where: sl_features_bool_exp): [sl_features!]!
+
+  """
+  fetch data from the table: "sl.groups" using primary key columns
+  """
+  group(id: String!): sl_groups
+
+  """
+  fetch data from the table: "sl.groups"
+  """
+  groups("distinct select on columns" distinct_on: [sl_groups_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_groups_order_by!], "filter the rows returned" where: sl_groups_bool_exp): [sl_groups!]!
+
+  """
+  fetch data from the table: "sl.integrations" using primary key columns
+  """
+  integration(id: Int!): sl_integrations
+
+  """
+  fetch data from the table: "sl.integrations"
+  """
+  integrations("distinct select on columns" distinct_on: [sl_integrations_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_integrations_order_by!], "filter the rows returned" where: sl_integrations_bool_exp): [sl_integrations!]!
+
+  """
+  perform the action: "inviteEmail"
+  """
+  inviteEmail(token: String!): InviteEmailResult
+
+  """
+  fetch data from the table: "sl.masks" using primary key columns
+  """
+  mask(id: Int!): sl_masks
+
+  """
+  fetch data from the table: "sl.masks"
+  """
+  masks("distinct select on columns" distinct_on: [sl_masks_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_masks_order_by!], "filter the rows returned" where: sl_masks_bool_exp): [sl_masks!]!
+
+  """
+  fetch data from the table: "sl.nodes" using primary key columns
+  """
+  node(id: Int!): sl_nodes
+
+  """
+  fetch data from the table: "sl.node_changes" using primary key columns
+  """
+  nodeChange(id: Int!): sl_node_changes
+
+  """
+  fetch data from the table: "sl.node_changes"
+  """
+  nodeChanges("distinct select on columns" distinct_on: [sl_node_changes_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_node_changes_order_by!], "filter the rows returned" where: sl_node_changes_bool_exp): [sl_node_changes!]!
+
+  """
+  fetch data from the table: "sl.node_snapshots" using primary key columns
+  """
+  nodeSnapshot(id: Int!): sl_node_snapshots
+
+  """
+  fetch data from the table: "sl.node_snapshot_type" using primary key columns
+  """
+  nodeSnapshotType(value: String!): sl_node_snapshot_type
+
+  """
+  fetch data from the table: "sl.node_snapshot_type"
+  """
+  nodeSnapshotTypes("distinct select on columns" distinct_on: [sl_node_snapshot_type_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_node_snapshot_type_order_by!], "filter the rows returned" where: sl_node_snapshot_type_bool_exp): [sl_node_snapshot_type!]!
+
+  """
+  fetch data from the table: "sl.node_snapshots"
+  """
+  nodeSnapshots("distinct select on columns" distinct_on: [sl_node_snapshots_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_node_snapshots_order_by!], "filter the rows returned" where: sl_node_snapshots_bool_exp): [sl_node_snapshots!]!
+
+  """
+  fetch data from the table: "sl.nodes"
+  """
+  nodes("distinct select on columns" distinct_on: [sl_nodes_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_nodes_order_by!], "filter the rows returned" where: sl_nodes_bool_exp): [sl_nodes!]!
+
+  """
+  fetch data from the table: "sl.permission_name" using primary key columns
+  """
+  permission(value: String!): sl_permission_name
+
+  """
+  fetch data from the table: "sl.permission_name"
+  """
+  permissions("distinct select on columns" distinct_on: [sl_permission_name_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_permission_name_order_by!], "filter the rows returned" where: sl_permission_name_bool_exp): [sl_permission_name!]!
+
+  """
+  fetch data from the table: "sl.projects" using primary key columns
+  """
+  project(id: Int!): sl_projects
+
+  """
+  perform the action: "projectTableOfContents"
+  """
+  projectTableOfContents(branchSlug: String, projectSlug: String!, workspaceSlug: String!): TableOfContents!
+
+  """
+  fetch data from the table: "sl.project_user_permissions"
+  """
+  projectUserPermissions("distinct select on columns" distinct_on: [sl_project_user_permissions_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_project_user_permissions_order_by!], "filter the rows returned" where: sl_project_user_permissions_bool_exp): [sl_project_user_permissions!]!
+
+  """
+  fetch data from the table: "sl.projects"
+  """
+  projects("distinct select on columns" distinct_on: [sl_projects_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_projects_order_by!], "filter the rows returned" where: sl_projects_bool_exp): [sl_projects!]!
+
+  """
+  fetch data from the table: "sl.resolved_workspace_integrations"
+  """
+  resolvedWorkspaceIntegrations("distinct select on columns" distinct_on: [sl_resolved_workspace_integrations_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_resolved_workspace_integrations_order_by!], "filter the rows returned" where: sl_resolved_workspace_integrations_bool_exp): [sl_resolved_workspace_integrations!]!
+
+  """
+  fetch data from the table: "sl.role_name" using primary key columns
+  """
+  role(value: String!): sl_role_name
+
+  """
+  fetch data from the table: "sl.role_permissions" using primary key columns
+  """
+  rolePermission(permission: sl_permission_name_enum!, role: sl_role_name_enum!): sl_role_permissions
+
+  """
+  fetch data from the table: "sl.role_permissions"
+  """
+  rolePermissions("distinct select on columns" distinct_on: [sl_role_permissions_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_role_permissions_order_by!], "filter the rows returned" where: sl_role_permissions_bool_exp): [sl_role_permissions!]!
+
+  """
+  fetch data from the table: "sl.role_name"
+  """
+  roles("distinct select on columns" distinct_on: [sl_role_name_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_role_name_order_by!], "filter the rows returned" where: sl_role_name_bool_exp): [sl_role_name!]!
+
+  """
+  fetch data from the table: "sl.role_priority"
+  """
+  sl_role_priority("distinct select on columns" distinct_on: [sl_role_priority_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_role_priority_order_by!], "filter the rows returned" where: sl_role_priority_bool_exp): [sl_role_priority!]!
+
+  """
+  fetch data from the table: "sl.role_priority" using primary key columns
+  """
+  sl_role_priority_by_pk(id: Int!): sl_role_priority
+
+  """
+  fetch data from the table: "sl.setting_name"
+  """
+  sl_setting_name("distinct select on columns" distinct_on: [sl_setting_name_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_setting_name_order_by!], "filter the rows returned" where: sl_setting_name_bool_exp): [sl_setting_name!]!
+
+  """
+  fetch data from the table: "sl.setting_name" using primary key columns
+  """
+  sl_setting_name_by_pk(value: String!): sl_setting_name
+
+  """
+  execute function "sl.sl_search_nodes" which returns "sl.type_search_node_results"
+  """
+  sl_sl_search_nodes("input parameters for function \"sl.sl_search_nodes\"" args: sl_sl_search_nodes_args!, "distinct select on columns" distinct_on: [sl_type_search_node_results_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_type_search_node_results_order_by!], "filter the rows returned" where: sl_type_search_node_results_bool_exp): [sl_type_search_node_results!]!
+
+  """
+  fetch data from the table: "sl.type_search_node_results"
+  """
+  sl_type_search_node_results("distinct select on columns" distinct_on: [sl_type_search_node_results_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_type_search_node_results_order_by!], "filter the rows returned" where: sl_type_search_node_results_bool_exp): [sl_type_search_node_results!]!
+
+  """
+  fetch data from the table: "sl.type_search_node_results" using primary key columns
+  """
+  sl_type_search_node_results_by_pk(id: Int!): sl_type_search_node_results
+
+  """
+  fetch data from the table: "sl.system_status"
+  """
+  systemStatus("distinct select on columns" distinct_on: [sl_system_status_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_system_status_order_by!], "filter the rows returned" where: sl_system_status_bool_exp): [sl_system_status!]!
+
+  """
+  fetch data from the table: "sl.workspaces" using primary key columns
+  """
+  workspace(id: Int!): sl_workspaces
+
+  """
+  fetch data from the table: "sl.workspace_features" using primary key columns
+  """
+  workspaceFeature(id: Int!): sl_workspace_features
+
+  """
+  fetch data from the table: "sl.workspace_features"
+  """
+  workspaceFeatures("distinct select on columns" distinct_on: [sl_workspace_features_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_features_order_by!], "filter the rows returned" where: sl_workspace_features_bool_exp): [sl_workspace_features!]!
+
+  """
+  fetch data from the table: "sl.workspace_integrations" using primary key columns
+  """
+  workspaceIntegration(id: Int!): sl_workspace_integrations
+
+  """
+  fetch data from the table: "sl.workspace_integrations"
+  """
+  workspaceIntegrations("distinct select on columns" distinct_on: [sl_workspace_integrations_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_integrations_order_by!], "filter the rows returned" where: sl_workspace_integrations_bool_exp): [sl_workspace_integrations!]!
+
+  """
+  fetch data from the table: "sl.workspace_invitations" using primary key columns
+  """
+  workspaceInvitation(id: Int!): sl_workspace_invitations
+
+  """
+  fetch data from the table: "sl.workspace_invitations"
+  """
+  workspaceInvitations("distinct select on columns" distinct_on: [sl_workspace_invitations_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_invitations_order_by!], "filter the rows returned" where: sl_workspace_invitations_bool_exp): [sl_workspace_invitations!]!
+
+  """
+  fetch data from the table: "sl.workspace_usage"
+  """
+  workspaceUsage("distinct select on columns" distinct_on: [sl_workspace_usage_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_usage_order_by!], "filter the rows returned" where: sl_workspace_usage_bool_exp): [sl_workspace_usage!]!
+
+  """
+  fetch data from the table: "sl.workspace_user_permissions"
+  """
+  workspaceUserPermissions("distinct select on columns" distinct_on: [sl_workspace_user_permissions_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspace_user_permissions_order_by!], "filter the rows returned" where: sl_workspace_user_permissions_bool_exp): [sl_workspace_user_permissions!]!
+
+  """
+  fetch data from the table: "sl.workspaces"
+  """
+  workspaces("distinct select on columns" distinct_on: [sl_workspaces_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_workspaces_order_by!], "filter the rows returned" where: sl_workspaces_bool_exp): [sl_workspaces!]!
+
+  """
+  fetch data from the table: "sl.yjs_documents" using primary key columns
+  """
+  yjsDocument(id: Int!): sl_yjs_documents
+
+  """
+  fetch data from the table: "sl.yjs_documents"
+  """
+  yjsDocuments("distinct select on columns" distinct_on: [sl_yjs_documents_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_yjs_documents_order_by!], "filter the rows returned" where: sl_yjs_documents_bool_exp): [sl_yjs_documents!]!
+
+  """
+  fetch data from the table: "sl.yjs_snapshots" using primary key columns
+  """
+  yjsSnapshot(id: Int!): sl_yjs_snapshots
+
+  """
+  fetch data from the table: "sl.yjs_snapshots"
+  """
+  yjsSnapshots("distinct select on columns" distinct_on: [sl_yjs_snapshots_select_column!], "limit the number of rows returned" limit: Int, "skip the first n rows. Use only with order_by" offset: Int, "sort the rows by one or more columns" order_by: [sl_yjs_snapshots_order_by!], "filter the rows returned" where: sl_yjs_snapshots_bool_exp): [sl_yjs_snapshots!]!
+}
+
+scalar timestamptz
+
+"""
+expression to compare columns of type timestamptz. All fields are combined with logical 'AND'.
+"""
+input timestamptz_comparison_exp {
+  _eq: timestamptz
+
+  _gt: timestamptz
+
+  _gte: timestamptz
+
+  _in: [timestamptz!]
+
+  _is_null: Boolean
+
+  _lt: timestamptz
+
+  _lte: timestamptz
+
+  _neq: timestamptz
+
+  _nin: [timestamptz!]
+}
+
+scalar tsvector
+
+"""
+expression to compare columns of type tsvector. All fields are combined with logical 'AND'.
+"""
+input tsvector_comparison_exp {
+  _eq: tsvector
+
+  _gt: tsvector
+
+  _gte: tsvector
+
+  _in: [tsvector!]
+
+  _is_null: Boolean
+
+  _lt: tsvector
+
+  _lte: tsvector
+
+  _neq: tsvector
+
+  _nin: [tsvector!]
+}
+
+scalar uuid
+
+schema {
+  query: query_root
+  mutation: mutation_root
+  subscription: subscription_root
+}
