@@ -1,0 +1,8 @@
+mutation Login($email: String, $password: String, $code: String, $workspaceIntegrationId: Int!) {
+    login(workspaceIntegrationId: $workspaceIntegrationId, usernameOrEmail: $email, password: $password, code: $code) {
+        token
+        userId
+        joinRequestDenied
+        __typename
+    }
+}
